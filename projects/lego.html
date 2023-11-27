@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="PATMAT: Person Aware Tuning of Mask Aware Transformer for Face Inpainting">
-  <meta name="keywords" content="Generative Models, Inpainting, Fine Tuning">
+        content="Lego: Learning to Disentangle and Invert Concepts Beyond Object Appearance in Text-to-Image Diffusion Models">
+  <meta name="keywords" content="Generative Models, Textual Inversion, Diffusion Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PATMAT: Person Aware Tuning of Mask Aware Transformer for Face Inpainting</title>
+  <title>Lego: Learning to Disentangle and Invert Concepts Beyond Object Appearance in Text-to-Image Diffusion Models</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -45,33 +45,27 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">PATMAT: Person Aware Tuning of Mask Aware Transformer for Face Inpainting</h1>
+          <h1 class="title is-2 publication-title">Lego: Learning to Disentangle and Invert Concepts Beyond Object Appearance in Text-to-Image Diffusion Models</h1>
           <div class="is-size-4 publication-authors">
             <span class="author-block">
               <a href="https://scholar.google.ca/citations?user=lKZ7htMAAAAJ&hl=en">Saman Motamed</a>,</span>
             <span class="author-block">
-              <a href="">Jianjin Xu</a>,
+            <a href="">Danda Pani Paudel</a>,</span>
             <span class="author-block">
-            <a href="https://scholar.google.com/citations?hl=en&user=WFKit_4AAAAJ&view_op=list_works&sortby=pubdate">Chen Henry Wu</a>,</span>
-            <span class="author-block">
-            <a href="">Christian Häne</a>,</span>
-            <span class="author-block">
-              <span class="author-block">
-            <a href="">Jean-Charles Bazin</a>,</span>
-            <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=YB8_6gkAAAAJ&hl=en">Fernando De La Torre</a>
+              <a href="https://ee.ethz.ch/the-department/faculty/professors/person-detail.OTAyMzM=.TGlzdC80MTEsMTA1ODA0MjU5.html">Luc Van Gool</a>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Robotics Institute, Carnegie Mellon University</span>
+            <span class="author-block">INSAIT, Sofia University</span>
+            <span class="author-block">ETH Zurich</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2304.06107.pdf"
+                <a href="https://arxiv.org/pdf/2311.13833.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -80,7 +74,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2304.06107"
+                <a href="https://arxiv.org/abs/2311.13833"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -90,7 +84,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/humansensinglab/PATMAT"
+                <a href="https://github.com/sam-motamed/Lego"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -113,7 +107,7 @@
 <section class="hero teaser">
     <div class="container is-max-desktop">
         <div class="hero-body">
-            <img src="assets/patmat-teaser.jpg"
+            <img src="assets/row-expanded-abstract.jpg"
                                      alt="Teaser"/>
         </div>
     </div>
@@ -127,14 +121,25 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content">
           <p align="justify">
-           Generative models such as StyleGAN2 and Stable Diffusion have achieved state-of-the-art performance in computer vision tasks such as image synthesis,
-            inpainting, and de-noising. However, current generative models for face inpainting often fail to preserve fine facial details and the identity of the person,
-            despite creating aesthetically convincing image structures and textures. In this work, we propose Person Aware Tuning (PAT) of Mask-Aware Transformer (MAT) for face inpainting,
-            which addresses this issue. Our proposed method, PATMAT, effectively preserves identity by incorporating reference images of a subject and fine-tuning a MAT architecture trained on faces.
-            By using ~40 reference images, PATMAT creates anchor points in MAT's style module, and tunes the model using the fixed anchors to adapt the model to a new face identity. Moreover,
-            PATMAT's use of multiple images per anchor during training allows the model to use fewer reference images than competing methods. We demonstrate that PATMAT outperforms state-of-the-art
-            models in terms of image quality, the preservation of person-specific details, and the identity of the subject. Our results suggest that PATMAT can be a promising approach for improving the
-            quality of personalized face inpainting.
+           Diffusion models have revolutionized generative content
+creation and text-to-image (T2I) diffusion models in particular have increased the creative freedom of users by allowing scene synthesis using natural language. T2I models
+excel at synthesizing concepts such as nouns, appearances,
+and styles. To enable customized content creation based on
+a few example images of a concept, methods such as Textual
+Inversion and DreamBooth invert the desired concept and
+enable synthesizing it in new scenes. However, inverting
+more general concepts that go beyond object appearance
+and style (adjectives and verbs) through natural language,
+remains a challenge. Two key characteristics of these concepts contribute to the limitations of current inversion methods. 1) Adjectives and verbs are entangled with nouns (subject) and can hinder appearance-based inversion methods,
+where the subject appearance leaks into the concept embedding and 2) describing such concepts often extends beyond
+single word embeddings (“being frozen in ice”, “walking
+on a tightrope”, etc.) that current methods do not handle.
+In this study, we introduce Lego, a textual inversion
+method designed to invert subject entangled concepts from a
+few example images. Lego disentangles concepts from their
+associated subjects using a simple yet effective Subject Separation step and employs a Context Loss that guides the
+inversion of single/multi-embedding concepts. In a thorough user study, Lego-generated concepts were preferred over 70% of the time when compared to the baseline. Additionally, visual question answering using a large language model suggested Lego-generated concepts are better
+aligned with the text description of the concept.
           </p>
         </div>
       </div>
@@ -146,10 +151,10 @@
     <div class="container">
         <div class="content has-text-centered">
             <a class="icon-link"
-               href="https://arxiv.org/abs/2304.06107">
+               href="https://arxiv.org/abs/2311.13833">
                 <i class="fas fa-file-pdf"></i>
             </a>
-            <a class="icon-link" href="https://github.com/humansensinglab/PATMAT" class="external-link" disabled>
+            <a class="icon-link" href="https://github.com/sam-motamed/Lego" class="external-link" disabled>
                 <i class="fab fa-github"></i>
             </a>
         </div>
