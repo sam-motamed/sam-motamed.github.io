@@ -154,11 +154,29 @@ aligned with the text description of the concept.
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">How it works</h2>
-        <img src="assets/row-expanded-abstract.jpg" alt="Teaser"/>
+        <img src="assets/m-update.jpg" alt="Teaser"/>
         <div class="content">
           <p align="justify">
-We identify two...
+We identify Two characteristics associated with adjectives and verbs that hinder previous text-based inversion methods and address them with Lego for a faithful inversion of these concepts. 
+            Example images of Adjective and Verbs that one would like to use for inversion has an associated subject (noun) that the adjective or verb is applied to. We call this entanglement where trying to invert the concept using previous methods cannot separate the subject from the concept. 
+            For this, we introduce a <b>subject separation</b> step that disentangles the subject from concept by dedicating a separate embedding to learn the subjuect appearance. The second characteristic is that while previous inversion methods work with single-word-embedding
+            concepts in their framework, many adjectives and verbs require multiple word embeddings to be described. We enable optimizing such multi-word-embedding concepts
+            by introducing a <b>context loss</b> that guides each embedding in the text embedding space. These two steps combgined allow Lego to faithfully represent such concepts.
           </p>
+        </div>
+      </div>
+    </div>
+    <!--/ method -->
+
+
+    section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">A few examples and baseline comparisons</h2>
+        <img src="assets/replaced-main-result.jpg" alt="Teaser"/>
+        <div class="content">
         </div>
       </div>
     </div>
