@@ -1,1 +1,138 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TRAVL: Physics-Aware VLMs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      line-height: 1.6;
+      background: #f9f9f9;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+    }
+    h1, h2, h3 {
+      text-align: center;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .buttons a {
+      padding: 10px 20px;
+      background-color: #007acc;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .figure {
+      text-align: center;
+      margin: 30px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fafafa;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>TRAVL</h1>
+    <h3>A Recipe for Making Video-Language Models Better Judges of Physics Implausibility</h3>
+
+    <div class="buttons">
+      <a href="#">📄 ArXiv</a>
+      <a href="#">💻 GitHub</a>
+      <a href="#">🤗 Hugging Face</a>
+    </div>
+
+    <h2>Teaser Figure</h2>
+    <div class="figure">
+      <img src="/assets/travl-teaser.jpg" alt="Teaser Figure" style="max-width:100%; border: 1px solid #ccc;">
+      <p><em>Placeholder for teaser figure showing plausible vs implausible video scenes.</em></p>
+    </div>
+
+    <h2>Method Overview</h2>
+    <div class="figure">
+      <img src="method_placeholder.jpg" alt="Method Diagram" style="max-width:100%; border: 1px solid #ccc;">
+      <p><em>Placeholder for TRAVL architecture with trajectory-aware attention.</em></p>
+    </div>
+
+    <h2>Benchmark Results</h2>
+    <table>
+      <tr>
+        <th>Model</th>
+        <th>Impossible Videos (535)</th>
+        <th>ImplausiBench (150)</th>
+      </tr>
+      <tr>
+        <td><strong>Proprietary</strong> Gemini 2.0</td>
+        <td>153</td>
+        <td>29</td>
+      </tr>
+      <tr>
+        <td>GPT-4o</td>
+        <td>328</td>
+        <td>40</td>
+      </tr>
+      <tr>
+        <td><strong>Open-Source</strong> Qwen VL 2.5</td>
+        <td>223</td>
+        <td>18</td>
+      </tr>
+      <tr>
+        <td>Video-ChatGPT</td>
+        <td>36</td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>Video-ChatGPT + SFT</td>
+        <td>177</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>Video-ChatGPT + TRAVL</td>
+        <td>277</td>
+        <td>22</td>
+      </tr>
+      <tr>
+        <td>LLaVA-NeXT</td>
+        <td>148</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>LLaVA-NeXT + SFT</td>
+        <td>235</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>LLaVA-NeXT + TRAVL</td>
+        <td>285</td>
+        <td>28</td>
+      </tr>
+    </table>
+
+    <h2>Abstract</h2>
+    <p>
+      TRAVL introduces a lightweight fine-tuning framework for Video-Language Models (VLMs) to improve their reasoning about physics implausibility. It leverages trajectory-aware self-attention over object-level motion paths and spatial structure. TRAVL is model-agnostic and enhances performance on the proposed benchmark, ImplausiBench, which tests grounded visual-temporal reasoning by removing linguistic shortcuts.
+    </p>
+  </div>
+</body>
+</html>
