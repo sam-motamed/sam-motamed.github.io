@@ -154,16 +154,13 @@
                     </li>
                   </ul>
 
-                </td>
-              </tr>
-            </tbody>
-          </table>
+</td>
+</tr>
+</tbody>
+</table>
 
-          <!-- Publications Section -->
-          <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-            <tbody>
 
-              <heading>Selected Publications</heading>
+<heading>Selected Publications</heading>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px;">
   <!-- Physics-IQ -->
   <div style="border: 1px solid #ddd; border-radius: 8px; padding: 10px;">
@@ -242,7 +239,7 @@
   <li><strong>Physics-IQ Challenge Organizer</strong> — ICCV 2025, Honolulu, Hawaii</li>
 </ul>
 
-<!-- Optional CSS you could add to stylesheet.css -->
+<!-- Optional CSS -->
 <style>
   heading {
     font-size: 24px;
@@ -251,85 +248,69 @@
     font-weight: bold;
   }
 </style>
-                    Somewhat related to computer vision and content creation, I enjoy film photography on 35 mm and medium format film. You can view some of my photos below.
-                  </p>
 
-                  <!-- Slideshow Section -->
-                  <div class="slideshow-container">
-                    <div class="slides">
-                      <img src="photography/p1.jpg" style="width:100%">
-                    </div>
-                    <div class="slides">
-                      <img src="photography/p2.jpg" style="width:100%">
-                    </div>
-                    <div class="slides">
-                      <img src="photography/p3.jpg" style="width:100%">
-                    </div>
-                    <div class="slides">
-                      <img src="photography/p4.jpg" style="width:100%">
-                    </div>
+<heading>Photography</heading>
+<p>
+  Somewhat related to computer vision and content creation, I enjoy film photography on 35mm and medium format film. You can view some of my photos below.
+</p>
 
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                  </div>
+<!-- Slideshow Section -->
+<div class="slideshow-container">
+  <div class="slides">
+    <img src="photography/p1.jpg" style="width:100%">
+  </div>
+  <div class="slides">
+    <img src="photography/p2.jpg" style="width:100%">
+  </div>
+  <div class="slides">
+    <img src="photography/p3.jpg" style="width:100%">
+  </div>
+  <div class="slides">
+    <img src="photography/p4.jpg" style="width:100%">
+  </div>
 
-                  <br>
-                  <div style="text-align:center;">
-                    <span class="dot" onclick="currentSlide(1)"></span> 
-                    <span class="dot" onclick="currentSlide(2)"></span> 
-                    <span class="dot" onclick="currentSlide(3)"></span> 
-                  </div>
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
 
-                  <script>
-                    let slideIndex = 1;
-                    showSlides(slideIndex);
+<br>
+<div style="text-align:center;">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
 
-                    function plusSlides(n) {
-                      showSlides(slideIndex += n);
-                    }
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
 
-                    function currentSlide(n) {
-                      showSlides(slideIndex = n);
-                    }
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
 
-                    function showSlides(n) {
-                      let i;
-                      let slides = document.getElementsByClassName("slides");
-                      let dots = document.getElementsByClassName("dot");
-                      if (n > slides.length) {slideIndex = 1}
-                      if (n < 1) {slideIndex = slides.length}
-                      for (i = 0; i < slides.length; i++) {
-                          slides[i].style.display = "none";  
-                      }
-                      for (i = 0; i < dots.length; i++) {
-                          dots[i].className = dots[i].className.replace(" active", "");
-                      }
-                      slides[slideIndex-1].style.display = "block";  
-                      dots[slideIndex-1].className += " active";
-                    }
-                  </script>
-          
-          <br><br><br>
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
 
-          <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-            <tbody>
-              <tr>
-                <td style="padding:0;">
-                  <br>
-                  <p style="text-align:right; font-size:small;">
-                    <center>
-                      Feel free to steal this website's 
-                      <a href="https://github.com/jonbarron/jonbarron_website">source code</a>
-                    </center>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+  }
+</script>
 
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</body>
-</html>
+<br><br><br>
+
+<p style="text-align:center; font-size:small;">
+  Feel free to steal this website's <a href="https://github.com/jonbarron/jonbarron_website">source code</a>
+</p>
