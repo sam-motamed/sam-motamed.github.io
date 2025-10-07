@@ -63,6 +63,44 @@
 
     .card { background: var(--card); border:1px solid var(--ring); border-radius:16px; padding:18px; }
 
+    /* TRAVL training clip hover Q/A */
+.clipcard { position:relative; display:flex; flex-direction:column; gap:8px; }
+.clipcard video {
+  width:100%;
+  aspect-ratio: 16 / 9;
+  height:auto;
+  border-radius:12px;
+  border:1px solid var(--ring);
+  background:#000;
+  object-fit:cover;
+}
+.qa-flyout {
+  background:#ffffff;
+  border:1px solid var(--ring);
+  border-radius:12px;
+  padding:12px;
+  font-size:14px;
+  color:var(--text);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  opacity:0;
+  transform: translateY(-4px);
+  pointer-events:none;
+  transition: opacity .18s ease, transform .18s ease, max-height .18s ease, margin-top .18s ease;
+  max-height:0;
+  overflow:hidden;
+  margin-top:0;
+}
+.qa-flyout .q { font-weight:700; margin-bottom:6px; }
+.qa-flyout .a { color: var(--muted); }
+.clipcard:hover .qa-flyout,
+.clipcard.show .qa-flyout {
+  opacity:1;
+  transform: translateY(0);
+  pointer-events:auto;
+  max-height:260px;
+  margin-top:6px;
+}
+
     /*  Leaderboard */
     .table { width:100%; border-collapse: collapse; overflow:hidden; }
     .table th, .table td { padding: 12px 10px; border-bottom:1px solid var(--ring); font-size:14px; text-align:left; }
@@ -286,6 +324,23 @@
         document.querySelectorAll('.ib-pair').forEach(hookPair);
       })();
     </script>
+    
+    <script>
+      // Mobile tap-to-toggle for training clips (runs after DOM is ready)
+      (function(){
+        function bindClipcards(){
+          document.querySelectorAll('.clipcard video').forEach(function(v){
+            const card = v.closest('.clipcard');
+            if (!card || v._travlBound) return;
+            v._travlBound = true;
+            v.addEventListener('click', function(){ card.classList.toggle('show'); });
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', bindClipcards);
+        } else { bindClipcards(); }
+      })();
+    </script>
 
     <!-- Training Data Samples -->
     <section id="train">
@@ -316,8 +371,6 @@
       </div>
     </section>
 
-    <!-- Method (TRAVL) -->
-    <section id="method">
       <h2>Method: TRAVL</h2>
       <p class="lead">Spatial self‑attention within frames + trajectory‑guided temporal attention across frames (from CoTracker trajectories). Frozen vision & LLM backbones; train only the added attention + projector.</p>
       <div class="card">
