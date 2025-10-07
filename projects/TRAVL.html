@@ -6,7 +6,7 @@
   <title>TRAVL + ImplausiBench</title>
   <meta property="og:title" content="TRAVL + ImplausiBench" />
   <meta property="og:description" content="Trajectory‑Aware VLMs and the ImplausiBench benchmark." />
-  <meta property="og:image" content="assets/preview.png" />
+  <meta property="og:image" content="assets/travl-assets/travl-logo.png" />
   <meta property="og:url" content="https://your-site-url.example/" />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/png" href="assets/travl-assets/travl-logo.png" />
@@ -120,6 +120,64 @@
       <p class="lead">TRAVL adds spatial + trajectory‑guided temporal attention on top of frozen VLM backbones to improve their judgment for physics plausibility, while ImplausiBench evaluates visually grounded physics plausibility via paired real/implausible videos with grounded MCQs.</p>
     </section>
 
+     /* Leaderboard */
+    .table { width:100%; border-collapse: collapse; overflow:hidden; }
+    .table th, .table td { padding: 12px 10px; border-bottom:1px solid var(--ring); font-size:14px; text-align:left; }
+    .table th { background:#fafafa; font-weight:700; }
+    .scorebar { position:relative; height:18px; background:#f1f5f9; border-radius:10px; overflow:hidden; }
+    .scorebar > span { position:absolute; inset:0 auto 0 0; height:100%; border-radius:10px; display:block; }
+    .scoreval { font-variant-numeric: tabular-nums; font-weight:600; }
+    .badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #eef2ff; color:#3730a3; border: 1px solid #c7d2fe; }
+
+    /* Gallery grids */
+    .grid { display:grid; grid-template-columns: repeat( auto-fit, minmax(220px, 1fr) ); gap:14px; }
+    figure { margin:0; background:#fff; border:1px solid var(--ring); border-radius:14px; overflow:hidden; }
+    figure img, figure video { width:100%; height:auto; display:block; }
+    figcaption { padding:10px 12px; font-size: 13px; color: var(--muted); display:flex; justify-content:space-between; gap:10px; align-items:center; }
+
+    .pair { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .pair .tag { font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid var(--ring); color:#111827; background:#fff; }
+
+    .qa { display:grid; grid-template-columns: 1fr; gap:12px; }
+    .qa .qa-card { background:#fff; border:1px solid var(--ring); border-radius:14px; overflow:hidden; }
+    .qa .qa-body { padding:12px 14px; }
+    .qa .opts { margin-top:8px; display:grid; gap:6px; }
+    .qa .opt { padding:8px 10px; border:1px dashed #e5e7eb; border-radius:10px; font-size:14px; background:#fafafa; transition: background .15s ease, border-color .15s ease, box-shadow .15s ease; }
+    .qa .opt.correct { background:#eafff1; border-color:#22c55e; box-shadow: inset 0 0 0 1px #22c55e; }
+
+    .bib { background:#0b1220; color:#e5e7eb; border-radius:14px; padding:14px; font-family: ui-monospace, SFMono, Menlo, monospace; font-size:13px; overflow:auto; }
+
+    footer { text-align:center; color: var(--muted); padding: 30px 0 60px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="brand-row">
+        <img class="brand-logo" src="assets/logo.png" alt="Project Logo" />
+        <span class="badge">Project Page</span>
+      </div>
+      <h1 class="title">TRAVL: A Recipe for Making Video-Language Models Better Judges of Physics<br/>Implausibility</h1>
+      <div class="authors" style="color:#60a5fa">
+        <a href="https://sam-motamed.github.io/" target="_blank" rel="noreferrer" style="color:#60a5fa">Saman Motamed</a><sup>1,2</sup>,
+        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Minghao Chen</a><sup>2</sup>,
+        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Luc Van Gool</a><sup>1</sup>,
+        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Iro Laina</a><sup>2</sup>
+      </div>
+      <div class="affils">
+        <span class="affil1"><strong>1</strong>: INSAIT, Sofia University, Bulgaria</span> &nbsp;•&nbsp;
+        <span class="affil2"><strong>2</strong>: VGG, University of Oxford</span>
+      </div>
+      <div class="teaser">
+        <video src="assets/teaser.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </header>
+
+    <section>
+      <h2>TL;DR</h2>
+      <p class="lead">TRAVL adds spatial + trajectory‑guided temporal attention on top of frozen VLM backbones, while ImplausiBench evaluates visually grounded physics plausibility via paired real/implausible videos with adversarial MCQs.</p>
+    </section>
+
     <!-- Leaderboard (from Table 2) -->
     <section id="leaderboard">
       <h2>ImplausiBench Leaderboard (Table 2)</h2>
@@ -200,7 +258,7 @@
       <p class="lead">Each scenario has a <strong>plausible (real)</strong> clip and a matched <strong>implausible (generated)</strong> counterpart sharing the first frame & style.</p>
       <div class="grid">
         <!-- Example pair 1 -->
-        <div class="card">
+        <div class="card ib-pair" data-pair-id="ex01">
           <div class="pair">
             <figure>
               <video src="bench/EX01_real.mp4" controls muted></video>
@@ -221,23 +279,67 @@
       <h2>Multiple‑Choice QA (Shown Pairs)</h2>
       <p class="lead">Questions are adversarially constructed to remove language‑only shortcuts. The correct option flips depending on which version (real vs. implausible) is shown.</p>
       <div class="qa">
-        <div class="qa-card">
+        <div class="qa-card" data-pair-id="ex01" data-real-correct="A" data-impl-correct="B">
           <div class="qa-body">
             <strong>Q:</strong> Do the events follow physical principles (Real) or are they Implausible? Why?
             <div class="opts">
-              <div class="opt">A. Real, because … (placeholder)</div>
-              <div class="opt">B. Implausible, because … (placeholder)</div>
-              <div class="opt">C. Real, because … (placeholder)</div>
-              <div class="opt">D. Implausible, because … (placeholder)</div>
-              <div class="opt">E. Real, because … (placeholder)</div>
-              <div class="opt">F. Implausible, because … (placeholder)</div>
-              <div class="opt">G. None of the above.</div>
+              <div class="opt" data-opt="A">A. Real, because … (placeholder)</div>
+              <div class="opt" data-opt="B">B. Implausible, because … (placeholder)</div>
+              <div class="opt" data-opt="C">C. Real, because … (placeholder)</div>
+              <div class="opt" data-opt="D">D. Implausible, because … (placeholder)</div>
+              <div class="opt" data-opt="E">E. Real, because … (placeholder)</div>
+              <div class="opt" data-opt="F">F. Implausible, because … (placeholder)</div>
+              <div class="opt" data-opt="G">G. None of the above.</div>
             </div>
+          </div>
+        </div>
+        <!-- Duplicate qa-card per displayed pair -->
+                  <button type="button" class="reset-btn" style="margin-top:10px; font-size:12px; background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:6px 8px; cursor:pointer">Reset highlight</button>
           </div>
         </div>
         <!-- Duplicate qa-card per displayed pair -->
       </div>
     </section>
+
+    <script>
+      // Hover/click highlighting between ImplausiBench pair and its MCQ
+      (function() {
+        function hookPair(pair) {
+          const pid = pair.dataset.pairId;
+          const qa = document.querySelector(`.qa-card[data-pair-id="${pid}"]`);
+          if (!qa) return;
+          const realKey = qa.dataset.realCorrect || "";
+          const implKey = qa.dataset.implCorrect || "";
+          const opts = Array.from(qa.querySelectorAll('.opt'));
+          const byKey = (k) => opts.find(o => (o.dataset.opt||"").toUpperCase() === k.toUpperCase());
+
+          function clear() { opts.forEach(o => o.classList.remove('correct')); }
+          function mark(k) { clear(); const el = byKey(k); if (el) el.classList.add('correct'); }
+
+          const figures = pair.querySelectorAll('figure');
+          const realFig = figures[0];
+          const implFig = figures[1];
+
+          function hoverEnable(fig, key) {
+            if (!fig) return;
+            fig.addEventListener('mouseenter', () => { if (!qa.dataset.locked) mark(key); });
+            fig.addEventListener('mouseleave', () => { if (!qa.dataset.locked) clear(); });
+            fig.addEventListener('click', () => {
+              if (qa.dataset.locked === key) { qa.dataset.locked = ''; clear(); }
+              else { qa.dataset.locked = key; mark(key); }
+            });
+          }
+
+          hoverEnable(realFig, realKey);
+          hoverEnable(implFig, implKey);
+
+          const reset = qa.querySelector('.reset-btn');
+          if (reset) reset.addEventListener('click', () => { qa.dataset.locked=''; clear(); });
+        }
+
+        document.querySelectorAll('.ib-pair').forEach(hookPair);
+      })();
+    </script>
 
     <!-- Training Data Samples -->
     <section id="train">
@@ -293,8 +395,8 @@
 @inproceedings{travl2026,
   title={TRAVL: A Recipe for Making Video-Language Models Better Judges of Physics Implausibility},
   author={Motamed, Saman and Others},
-  booktitle={},
-  year={}
+  booktitle={WACV},
+  year={2026}
 }
       </div>
     </section>
