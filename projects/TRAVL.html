@@ -9,7 +9,7 @@
   <meta property="og:image" content="assets/preview.png" />
   <meta property="og:url" content="https://your-site-url.example/" />
   <meta property="og:type" content="website" />
-  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="icon" type="image/png" href="assets/travl-assets/travl-logo.png" />
 
   <style>
     :root {
@@ -102,13 +102,13 @@
       <h1 class="title">TRAVL: A Recipe for Making Video-Language Models Better Judges of Physics<br/>Implausibility</h1>
       <div class="authors" style="color:#60a5fa">
         <a href="https://sam-motamed.github.io/" target="_blank" rel="noreferrer" style="color:#60a5fa">Saman Motamed</a><sup>1,2</sup>,
-        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Minghao Chen</a><sup>2</sup>,
-        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Luc Van Gool</a><sup>1</sup>,
-        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Iro Laina</a><sup>2</sup>
+        <a href="https://silent-chen.github.io/" target="_blank" rel="noreferrer" style="color:#60a5fa">Minghao Chen</a><sup>2</sup>,
+        <a href="https://scholar.google.com/citations?user=TwMib_QAAAAJ&hl=en" target="_blank" rel="noreferrer" style="color:#60a5fa">Luc Van Gool</a><sup>1</sup>,
+        <a href="https://scholar.google.com/citations?user=n9nXAPcAAAAJ&hl=en" target="_blank" rel="noreferrer" style="color:#60a5fa">Iro Laina</a><sup>2</sup>
       </div>
       <div class="affils">
         <span class="affil1"><strong>1</strong>: INSAIT, Sofia University, Bulgaria</span> &nbsp;•&nbsp;
-        <span class="affil2"><strong>2</strong>: VGG, University of Oxford</span>
+        <span class="affil2"><strong>2</strong>: Visual Geometry Group, University of Oxford</span>
       </div>
       <div class="teaser">
         <video src="assets/teaser.mp4" autoplay muted loop playsinline></video>
@@ -117,7 +117,7 @@
 
     <section>
       <h2>TL;DR</h2>
-      <p class="lead">TRAVL adds spatial + trajectory‑guided temporal attention on top of frozen VLM backbones, while ImplausiBench evaluates visually grounded physics plausibility via paired real/implausible videos with adversarial MCQs.</p>
+      <p class="lead">TRAVL adds spatial + trajectory‑guided temporal attention on top of frozen VLM backbones to improve their judgment for physics plausibility, while ImplausiBench evaluates visually grounded physics plausibility via paired real/implausible videos with grounded MCQs.</p>
     </section>
 
     <!-- Leaderboard (from Table 2) -->
@@ -136,13 +136,14 @@
                 <th>Real — LLM</th>
               </tr>
             </thead>
-            <tbody>
+            $1
+              <!-- Color key: magenta (TRAVL), orange (LLaVA SFT/pre), green (Qwen), blue (Gemini), red (InternVideo), dark grey (GPT) -->
               <tr>
                 <td><strong>LLaVA‑NeXT (TRAVL)</strong></td>
-                <td><div class="scorebar"><span style="width:52.7%; background:#eab308"></span></div> <span class="scoreval">52.7</span></td>
-                <td><div class="scorebar"><span style="width:28.7%; background:#eab308"></span></div> <span class="scoreval">28.7</span></td>
-                <td><div class="scorebar"><span style="width:47.3%; background:#ca8a04"></span></div> <span class="scoreval">47.3</span></td>
-                <td><div class="scorebar"><span style="width:31.3%; background:#ca8a04"></span></div> <span class="scoreval">31.3</span></td>
+                <td><div class="scorebar"><span style="width:52.7%; background:#d946ef"></span></div> <span class="scoreval">52.7</span></td>
+                <td><div class="scorebar"><span style="width:28.7%; background:#d946ef"></span></div> <span class="scoreval">28.7</span></td>
+                <td><div class="scorebar"><span style="width:47.3%; background:#a21caf"></span></div> <span class="scoreval">47.3</span></td>
+                <td><div class="scorebar"><span style="width:31.3%; background:#a21caf"></span></div> <span class="scoreval">31.3</span></td>
               </tr>
               <tr>
                 <td>Gemini 2.5 Pro</td>
@@ -160,10 +161,10 @@
               </tr>
               <tr>
                 <td>GPT‑4o</td>
-                <td><div class="scorebar"><span style="width:32.7%; background:#9ca3af"></span></div> <span class="scoreval">32.7</span></td>
-                <td><div class="scorebar"><span style="width:21.3%; background:#9ca3af"></span></div> <span class="scoreval">21.3</span></td>
-                <td><div class="scorebar"><span style="width:84.7%; background:#6b7280"></span></div> <span class="scoreval">84.7</span></td>
-                <td><div class="scorebar"><span style="width:64.0%; background:#6b7280"></span></div> <span class="scoreval">64.0</span></td>
+                <td><div class="scorebar"><span style="width:32.7%; background:#6b7280"></span></div> <span class="scoreval">32.7</span></td>
+                <td><div class="scorebar"><span style="width:21.3%; background:#6b7280"></span></div> <span class="scoreval">21.3</span></td>
+                <td><div class="scorebar"><span style="width:84.7%; background:#374151"></span></div> <span class="scoreval">84.7</span></td>
+                <td><div class="scorebar"><span style="width:64.0%; background:#374151"></span></div> <span class="scoreval">64.0</span></td>
               </tr>
               <tr>
                 <td>Qwen2.5‑VL</td>
@@ -174,10 +175,10 @@
               </tr>
               <tr>
                 <td>InternVideo 2.5</td>
-                <td><div class="scorebar"><span style="width:12.7%; background:#7c3aed"></span></div> <span class="scoreval">12.7</span></td>
-                <td><div class="scorebar"><span style="width:4.7%; background:#7c3aed"></span></div> <span class="scoreval">4.7</span></td>
-                <td><div class="scorebar"><span style="width:92.7%; background:#5b21b6"></span></div> <span class="scoreval">92.7</span></td>
-                <td><div class="scorebar"><span style="width:76.0%; background:#5b21b6"></span></div> <span class="scoreval">76.0</span></td>
+                <td><div class="scorebar"><span style="width:12.7%; background:#ef4444"></span></div> <span class="scoreval">12.7</span></td>
+                <td><div class="scorebar"><span style="width:4.7%; background:#ef4444"></span></div> <span class="scoreval">4.7</span></td>
+                <td><div class="scorebar"><span style="width:92.7%; background:#b91c1c"></span></div> <span class="scoreval">92.7</span></td>
+                <td><div class="scorebar"><span style="width:76.0%; background:#b91c1c"></span></div> <span class="scoreval">76.0</span></td>
               </tr>
               <tr>
                 <td>LLaVA‑NeXT (pretrained)</td>
@@ -186,7 +187,7 @@
                 <td><div class="scorebar"><span style="width:98.7%; background:#b45309"></span></div> <span class="scoreval">98.7</span></td>
                 <td><div class="scorebar"><span style="width:62.7%; background:#b45309"></span></div> <span class="scoreval">62.7</span></td>
               </tr>
-            </tbody>
+            $3
           </table>
         </div>
       </div>
@@ -292,8 +293,8 @@
 @inproceedings{travl2026,
   title={TRAVL: A Recipe for Making Video-Language Models Better Judges of Physics Implausibility},
   author={Motamed, Saman and Others},
-  booktitle={WACV},
-  year={2026}
+  booktitle={},
+  year={}
 }
       </div>
     </section>
