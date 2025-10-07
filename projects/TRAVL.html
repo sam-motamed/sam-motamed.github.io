@@ -35,7 +35,7 @@
     .wrap { max-width: 1080px; margin: 0 auto; padding: 24px; }
     header.hero { text-align:center; padding: 24px 0 8px; }
     .brand-row { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:12px; }
-    .brand-logo { width:40px; height:40px; border-radius:10px; object-fit:cover; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+    .brand-logo { width:80px; height:80px; border-radius:12px; object-fit:contain; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
     .title { font-size: clamp(28px, 4.6vw, 44px); line-height:1.15; margin:0 0 8px; letter-spacing:.2px; }
     .subtitle { color: var(--muted); margin:0 0 14px; font-size: clamp(16px, 1.8vw, 18px); }
 
@@ -53,9 +53,9 @@
     .teaser video, .teaser img { width:100%; height:auto; display:block; }
 
     .meta { text-align:center; font-size:14px; color:var(--muted); margin-top:6px; }
-    .authors { text-align:center; font-size:15px; margin-top:10px; }
+    .authors { text-align:center; font-size: clamp(18px, 2.2vw, 22px); margin-top:10px; }
     .authors a { color: inherit; text-decoration: none; border-bottom: 1px dashed #d1d5db; }
-    .affils { text-align:center; color:var(--muted); font-size:14px; margin-top:6px; }
+    .affils { text-align:center; color:#6b7280; font-size: clamp(16px, 2vw, 20px); margin-top:8px; }
 
     section { margin: 40px 0; }
     h2 { font-size: clamp(22px, 3vw, 28px); margin:0 0 12px; text-align:center; }
@@ -99,31 +99,20 @@
         <img class="brand-logo" src="assets/logo.png" alt="Project Logo" />
         <span class="badge">Project Page</span>
       </div>
-      <h1 class="title">TRAVL: Trajectory‑Aware VLMs<br/> + ImplausiBench</h1>
-      <p class="subtitle">A modular attention recipe for better physics plausibility judgments, and a 300‑video benchmark pairing real vs. implausible scenarios.</p>
-
-      <div class="pillbar">
-        <a class="pill" href="https://arxiv.org/abs/0000.00000" target="_blank" rel="noreferrer">
-          <img src="assets/arxiv.png" alt="arXiv"/> Paper
-        </a>
-        <a class="pill" href="https://arxiv.org/pdf/0000.00000" target="_blank" rel="noreferrer">PDF 📄</a>
-        <a class="pill" href="https://github.com/your-org/implausibench" target="_blank" rel="noreferrer">
-          <img src="assets/github.png" alt="GitHub"/> Code (placeholder)
-        </a>
-        <a class="pill" href="https://huggingface.co/datasets/your-hf/implausibench" target="_blank" rel="noreferrer">
-          🤗 Dataset (placeholder)
-        </a>
-        <a class="pill" href="#podcast">Podcast 📻 (placeholder)</a>
+      <h1 class="title">TRAVL: A Recipe for Making Video-Language Models Better Judges of Physics<br/>Implausibility</h1>
+      <div class="authors" style="color:#60a5fa">
+        <a href="https://sam-motamed.github.io/" target="_blank" rel="noreferrer" style="color:#60a5fa">Saman Motamed</a><sup>1,2</sup>,
+        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Minghao Chen</a><sup>2</sup>,
+        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Luc Van Gool</a><sup>1</sup>,
+        <a href="#" target="_blank" rel="noreferrer" style="color:#60a5fa">Iro Laina</a><sup>2</sup>
       </div>
-
+      <div class="affils">
+        <span class="affil1"><strong>1</strong>: INSAIT, Sofia University, Bulgaria</span> &nbsp;•&nbsp;
+        <span class="affil2"><strong>2</strong>: VGG, University of Oxford</span>
+      </div>
       <div class="teaser">
-        <!-- Replace with your teaser video -->
         <video src="assets/teaser.mp4" autoplay muted loop playsinline></video>
       </div>
-      <p class="meta">Replace teaser.mp4 once available • Drop your lab logos in <code>assets/</code></p>
-
-      <div class="authors">Saman Motamed, et al.</div>
-      <div class="affils">INSAIT / Oxford VGG / Netflix (intern) / collaborators</div>
     </header>
 
     <section>
@@ -148,77 +137,54 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Proprietary -->
               <tr>
-                <td>GPT‑4o</td>
-                <td><div class="scorebar"><span style="width:32.7%; background:#0ea5e9"></span></div> <span class="scoreval">32.7</span></td>
-                <td><div class="scorebar"><span style="width:21.3%; background:#06b6d4"></span></div> <span class="scoreval">21.3</span></td>
-                <td><div class="scorebar"><span style="width:84.7%; background:#10b981"></span></div> <span class="scoreval">84.7</span></td>
-                <td><div class="scorebar"><span style="width:64.0%; background:#22c55e"></span></div> <span class="scoreval">64.0</span></td>
+                <td><strong>LLaVA‑NeXT (TRAVL)</strong></td>
+                <td><div class="scorebar"><span style="width:52.7%; background:#eab308"></span></div> <span class="scoreval">52.7</span></td>
+                <td><div class="scorebar"><span style="width:28.7%; background:#eab308"></span></div> <span class="scoreval">28.7</span></td>
+                <td><div class="scorebar"><span style="width:47.3%; background:#ca8a04"></span></div> <span class="scoreval">47.3</span></td>
+                <td><div class="scorebar"><span style="width:31.3%; background:#ca8a04"></span></div> <span class="scoreval">31.3</span></td>
               </tr>
               <tr>
                 <td>Gemini 2.5 Pro</td>
-                <td><div class="scorebar"><span style="width:41.3%; background:#0ea5e9"></span></div> <span class="scoreval">41.3</span></td>
-                <td><div class="scorebar"><span style="width:29.3%; background:#06b6d4"></span></div> <span class="scoreval">29.3</span></td>
-                <td><div class="scorebar"><span style="width:100%; background:#10b981"></span></div> <span class="scoreval">100.0</span></td>
-                <td><div class="scorebar"><span style="width:78.0%; background:#22c55e"></span></div> <span class="scoreval">78.0</span></td>
-              </tr>
-              <!-- Open Source -->
-              <tr>
-                <td>Qwen2.5‑VL</td>
-                <td><div class="scorebar"><span style="width:18.7%; background:#f59e0b"></span></div> <span class="scoreval">18.7</span></td>
-                <td><div class="scorebar"><span style="width:12.0%; background:#fbbf24"></span></div> <span class="scoreval">12.0</span></td>
-                <td><div class="scorebar"><span style="width:96.7%; background:#10b981"></span></div> <span class="scoreval">96.7</span></td>
-                <td><div class="scorebar"><span style="width:74.7%; background:#22c55e"></span></div> <span class="scoreval">74.7</span></td>
-              </tr>
-              <tr>
-                <td>InternVideo 2.5</td>
-                <td><div class="scorebar"><span style="width:12.7%; background:#f59e0b"></span></div> <span class="scoreval">12.7</span></td>
-                <td><div class="scorebar"><span style="width:4.7%; background:#fbbf24"></span></div> <span class="scoreval">4.7</span></td>
-                <td><div class="scorebar"><span style="width:92.7%; background:#10b981"></span></div> <span class="scoreval">92.7</span></td>
-                <td><div class="scorebar"><span style="width:76.0%; background:#22c55e"></span></div> <span class="scoreval">76.0</span></td>
-              </tr>
-              <tr>
-                <td>Video‑ChatGPT (pretrained)</td>
-                <td><div class="scorebar"><span style="width:0%; background:#f59e0b"></span></div> <span class="scoreval">0.0</span></td>
-                <td><div class="scorebar"><span style="width:0%; background:#fbbf24"></span></div> <span class="scoreval">0.0</span></td>
-                <td><div class="scorebar"><span style="width:72.0%; background:#10b981"></span></div> <span class="scoreval">72.0</span></td>
-                <td><div class="scorebar"><span style="width:55.3%; background:#22c55e"></span></div> <span class="scoreval">55.3</span></td>
-              </tr>
-              <tr>
-                <td>Video‑ChatGPT (SFT)</td>
-                <td><div class="scorebar"><span style="width:6.0%; background:#f59e0b"></span></div> <span class="scoreval">6.0</span></td>
-                <td><div class="scorebar"><span style="width:2.7%; background:#fbbf24"></span></div> <span class="scoreval">2.7</span></td>
-                <td><div class="scorebar"><span style="width:39.3%; background:#10b981"></span></div> <span class="scoreval">39.3</span></td>
-                <td><div class="scorebar"><span style="width:26.0%; background:#22c55e"></span></div> <span class="scoreval">26.0</span></td>
-              </tr>
-              <tr>
-                <td>Video‑ChatGPT (TRAVL)</td>
-                <td><div class="scorebar"><span style="width:12.0%; background:#f59e0b"></span></div> <span class="scoreval">12.0</span></td>
-                <td><div class="scorebar"><span style="width:7.3%; background:#fbbf24"></span></div> <span class="scoreval">7.3</span></td>
-                <td><div class="scorebar"><span style="width:42.7%; background:#10b981"></span></div> <span class="scoreval">42.7</span></td>
-                <td><div class="scorebar"><span style="width:31.3%; background:#22c55e"></span></div> <span class="scoreval">31.3</span></td>
-              </tr>
-              <tr>
-                <td>LLaVA‑NeXT (pretrained)</td>
-                <td><div class="scorebar"><span style="width:3.3%; background:#f59e0b"></span></div> <span class="scoreval">3.3</span></td>
-                <td><div class="scorebar"><span style="width:2.7%; background:#fbbf24"></span></div> <span class="scoreval">2.7</span></td>
-                <td><div class="scorebar"><span style="width:98.7%; background:#10b981"></span></div> <span class="scoreval">98.7</span></td>
-                <td><div class="scorebar"><span style="width:62.7%; background:#22c55e"></span></div> <span class="scoreval">62.7</span></td>
+                <td><div class="scorebar"><span style="width:41.3%; background:#2563eb"></span></div> <span class="scoreval">41.3</span></td>
+                <td><div class="scorebar"><span style="width:29.3%; background:#2563eb"></span></div> <span class="scoreval">29.3</span></td>
+                <td><div class="scorebar"><span style="width:100%; background:#1e40af"></span></div> <span class="scoreval">100.0</span></td>
+                <td><div class="scorebar"><span style="width:78.0%; background:#1e40af"></span></div> <span class="scoreval">78.0</span></td>
               </tr>
               <tr>
                 <td>LLaVA‑NeXT (SFT)</td>
                 <td><div class="scorebar"><span style="width:34.0%; background:#f59e0b"></span></div> <span class="scoreval">34.0</span></td>
-                <td><div class="scorebar"><span style="width:22.0%; background:#fbbf24"></span></div> <span class="scoreval">22.0</span></td>
-                <td><div class="scorebar"><span style="width:45.3%; background:#10b981"></span></div> <span class="scoreval">45.3</span></td>
-                <td><div class="scorebar"><span style="width:23.3%; background:#22c55e"></span></div> <span class="scoreval">23.3</span></td>
+                <td><div class="scorebar"><span style="width:22.0%; background:#f59e0b"></span></div> <span class="scoreval">22.0</span></td>
+                <td><div class="scorebar"><span style="width:45.3%; background:#b45309"></span></div> <span class="scoreval">45.3</span></td>
+                <td><div class="scorebar"><span style="width:23.3%; background:#b45309"></span></div> <span class="scoreval">23.3</span></td>
               </tr>
               <tr>
-                <td><strong>LLaVA‑NeXT (TRAVL)</strong></td>
-                <td><div class="scorebar"><span style="width:52.7%; background:#ef4444"></span></div> <span class="scoreval">52.7</span></td>
-                <td><div class="scorebar"><span style="width:28.7%; background:#f97316"></span></div> <span class="scoreval">28.7</span></td>
-                <td><div class="scorebar"><span style="width:47.3%; background:#10b981"></span></div> <span class="scoreval">47.3</span></td>
-                <td><div class="scorebar"><span style="width:31.3%; background:#22c55e"></span></div> <span class="scoreval">31.3</span></td>
+                <td>GPT‑4o</td>
+                <td><div class="scorebar"><span style="width:32.7%; background:#9ca3af"></span></div> <span class="scoreval">32.7</span></td>
+                <td><div class="scorebar"><span style="width:21.3%; background:#9ca3af"></span></div> <span class="scoreval">21.3</span></td>
+                <td><div class="scorebar"><span style="width:84.7%; background:#6b7280"></span></div> <span class="scoreval">84.7</span></td>
+                <td><div class="scorebar"><span style="width:64.0%; background:#6b7280"></span></div> <span class="scoreval">64.0</span></td>
+              </tr>
+              <tr>
+                <td>Qwen2.5‑VL</td>
+                <td><div class="scorebar"><span style="width:18.7%; background:#22c55e"></span></div> <span class="scoreval">18.7</span></td>
+                <td><div class="scorebar"><span style="width:12.0%; background:#22c55e"></span></div> <span class="scoreval">12.0</span></td>
+                <td><div class="scorebar"><span style="width:96.7%; background:#15803d"></span></div> <span class="scoreval">96.7</span></td>
+                <td><div class="scorebar"><span style="width:74.7%; background:#15803d"></span></div> <span class="scoreval">74.7</span></td>
+              </tr>
+              <tr>
+                <td>InternVideo 2.5</td>
+                <td><div class="scorebar"><span style="width:12.7%; background:#7c3aed"></span></div> <span class="scoreval">12.7</span></td>
+                <td><div class="scorebar"><span style="width:4.7%; background:#7c3aed"></span></div> <span class="scoreval">4.7</span></td>
+                <td><div class="scorebar"><span style="width:92.7%; background:#5b21b6"></span></div> <span class="scoreval">92.7</span></td>
+                <td><div class="scorebar"><span style="width:76.0%; background:#5b21b6"></span></div> <span class="scoreval">76.0</span></td>
+              </tr>
+              <tr>
+                <td>LLaVA‑NeXT (pretrained)</td>
+                <td><div class="scorebar"><span style="width:3.3%; background:#f59e0b"></span></div> <span class="scoreval">3.3</span></td>
+                <td><div class="scorebar"><span style="width:2.7%; background:#f59e0b"></span></div> <span class="scoreval">2.7</span></td>
+                <td><div class="scorebar"><span style="width:98.7%; background:#b45309"></span></div> <span class="scoreval">98.7</span></td>
+                <td><div class="scorebar"><span style="width:62.7%; background:#b45309"></span></div> <span class="scoreval">62.7</span></td>
               </tr>
             </tbody>
           </table>
