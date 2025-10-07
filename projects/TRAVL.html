@@ -289,21 +289,30 @@
 
     <!-- Training Data Samples -->
     <section id="train">
-      <h2>Training Data Samples</h2>
-      <p class="lead">Balanced plausible vs. implausible clips; captions + temporal feedback; diverse motion contexts. Drop thumbnails or short clips below.</p>
+      <h2>TRAVL Training Data Samples</h2>
+      <p class="lead">Three short clips from the TRAVL training set. Hover to preview the associated <em>Question</em> and <em>Answer</em>; on mobile, tap a clip to toggle the panel.</p>
       <div class="grid">
-        <figure>
-          <img src="train/thumb_01.jpg" alt="Training sample thumbnail"/>
-          <figcaption>Physics‑IQ scenario • 3 views</figcaption>
-        </figure>
-        <figure>
-          <img src="train/thumb_02.jpg" alt="Training sample thumbnail"/>
-          <figcaption>Impossible Videos (physics) — repurposed for training</figcaption>
-        </figure>
-        <figure>
-          <img src="train/thumb_03.jpg" alt="Training sample thumbnail"/>
-          <figcaption>Runway/Pika generated variant</figcaption>
-        </figure>
+        <div class="clipcard">
+          <video src="assets/travl-assets/s1.mp4" controls muted playsinline preload="metadata"></video>
+          <div class="qa-flyout" aria-live="polite">
+            <div class="q">Question: What occurs when the yellow rubber ducky is released above the fabric box?</div>
+            <div class="a">Answer: Upon release, the duck defies expectations by not falling into the box as gravity would dictate. Instead, it suddenly increases in size and levitates above the box, which is physically implausible because it contradicts the natural effects of gravity without any apparent external forces acting on it.</div>
+          </div>
+        </div>
+        <div class="clipcard">
+          <video src="assets/travl-assets/s2.mp4" controls muted playsinline preload="metadata"></video>
+          <div class="qa-flyout">
+            <div class="q">Question: What sequence of events is depicted in the video involving the candles?</div>
+            <div class="a">Answer: The video begins by showing storm clouds and lightning from a window, alongside a small lit candle placed next to the window. As the video progresses, the candle starts to grow taller. Then, a second candle appears suddenly, duplicating from the first. Finally, a curtain inexplicably enters the scene, revealing a third, much larger candle.</div>
+          </div>
+        </div>
+        <div class="clipcard">
+          <video src="assets/travl-assets/s3.mp4" controls muted playsinline preload="metadata"></video>
+          <div class="qa-flyout">
+            <div class="q">Question: What happens to the cake as the video progresses?</div>
+            <div class="a">Answer: As the video progresses, the left side of the chocolate cake starts to deform and crumple as if someone is taking a bite out of it. However, this happens without any visible force or person interacting with the cake, which is physically implausible. In reality, for the cake to deform in such a way, an external force, such as a person's bite or a utensil's action, would be necessary.</div>
+          </div>
+        </div>
       </div>
     </section>
 
