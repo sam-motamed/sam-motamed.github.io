@@ -1,141 +1,189 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Sam Motamed</title>
+● <!DOCTYPE HTML>                                                                                                                          
+  <html lang="en">                                                                                                                         
+  <head>
+    <meta charset="UTF-8">                                                                                                                 
+    <title>Sam Motamed</title>
+                                                                                                                                           
+    <meta name="author" content="Sam Motamed">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="author" content="Sam Motamed">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- External CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
-  <!-- External CSS -->
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <!-- Favicon -->
+    <link rel="icon" 
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22
+  font-size=%2290%22>🤖</text></svg>">
 
-  <!-- Favicon -->
-  <link rel="icon" 
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <!-- Slideshow Styles -->
+    <style>
+      .slideshow-container {
+        position: relative;
+        width: 100%;
+      }
 
-  <!-- Slideshow Styles -->
-  <style>
-    .slideshow-container {
-      max-width: 800px;
-      position: relative;
-      margin: auto;
-    }
+      .slide {
+        display: none;
+        width: 100%;
+        text-align: center;
+      }
 
-    .slides {
-      display: none;
-      width: 100%;
-    }
+      .slide.active {
+        display: block;
+      }
 
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -22px;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.6s ease;
-      user-select: none;
-    }
+      .slide img {
+        width: 100%;
+        max-width: 100%;
+      }
 
-    .prev {
-      left: 0;
-    }
+      .slide-caption {
+        text-align: center;
+        font-size: 13px;
+        color: #555;
+        margin-top: 6px;
+      }
 
-    .next {
-      right: 0;
-    }
+      .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 45%;
+        transform: translateY(-50%);
+        padding: 8px 12px;
+        background-color: rgba(0,0,0,0.35);
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 3px;
+        user-select: none;
+        z-index: 10;
+      }
 
-    .dot {
-      cursor: pointer;
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.6s ease;
-    }
+      .prev { left: 0; }
+      .next { right: 0; }
 
-    .dot.active {
-      background-color: #717171;
-    }
-  </style>
-</head>
+      .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.7);
+      }
 
-<body>
-  <table style="width:100%; max-width:800px; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-    <tbody>
-      <tr>
-        <td style="padding:0;">
+      .slide-dots {
+        text-align: center;
+        margin-top: 8px;
+      }
 
-          <!-- Top Section -->
-          <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-            <tbody>
-              <tr>
-                <!-- Left Column -->
-                <td style="padding:2.5%; width:63%; vertical-align:middle;">
-                  <p style="text-align:center;">
-                    <name>Sam Motamed</name>
-                  </p>
-                  <p>
-                    I am an 
-                    <a href="https://ellis.eu/student/2024-saman-motamed">
-                      ELLIS
-                    </a> Ph.D. student at 
-                    <a href="https://insait.ai/">INSAIT</a> where I am advised by 
-                    Prof. <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a> and currently a Machine Learning Researcher Intern at Netflix. 
-                    From May to November 2024, I was a Student Researcher at Google DeepMind in Toronto, 
-                    working with Robert Geirhos.
-                  </p>
+      .dot {
+        cursor: pointer;
+        height: 10px;
+        width: 10px;
+        margin: 0 3px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+      }
 
-                  <p>
-                    Before my PhD journey began, I was a visiting researcher from 2021 to 2023 at CMU's 
-                    <a href="http://humansensing.cs.cmu.edu/home">Human Sensing Lab</a> working with the amazing 
-                    <a href="https://www.cs.cmu.edu/~ftorre/">Fernando De La Torre</a>. I also spent 7 wonderful years 
-                    at the University of Toronto's 
-                    <a href="https://web.cs.toronto.edu/">Computer Science department</a> 
-                    where I earned my HBSc and MS degrees.
-                  </p>
+      .dot.active { background-color: #555; }
+    </style>
+  </head>
 
-                  <p style="text-align:center;">
-                    <a href="mailto:saman.moatamed@gmail.com">Email</a> &nbsp;/&nbsp;
-                    <a href="data/resume_saman.pdf">CV</a> &nbsp;/&nbsp;
-                    <a href="https://scholar.google.com/citations?user=lKZ7htMAAAAJ&hl=en&oi=ao">
-                      Google Scholar
-                    </a> &nbsp;/&nbsp;
-                    <a href="https://twitter.com/sammtmd">Twitter</a> &nbsp;/&nbsp;
-                    <a href="https://github.com/sam-motamed/">Github</a>
-                  </p>
-                </td>
+  <body>
+    <table style="width:100%; max-width:800px; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
+      <tbody>
+        <tr>
+          <td style="padding:0;">
 
-                <!-- Right Column (Profile Image as GIF) -->
-              <td style="padding:2.5%; width:40%; max-width:80%;">
-                <div class="slideshow-container">
-                  <!-- Slide 1: GIF -->
-                  <div class="slide active">
-                    <img src="images/video-face.gif" ...>
-                    <p class="slide-caption">7 Magic Mountains - Nevada</p>
-                  </div>
-                  <!-- Slide 2: WACV -->
-                  <div class="slide">
-                    <img src="images/wacv-2026.png" ...>
-                    <p class="slide-caption">WACV 2026 - Arizona</p>
-                  </div>
-                  <!-- Dot navigation -->
-                  <div class="slide-dots">
-                    <span class="dot active" onclick="goToSlide(0)"></span>
-                    <span class="dot" onclick="goToSlide(1)"></span>
-                  </div>
-                </div>
-              </td>
+            <!-- Top Section -->
+            <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
+              <tbody>
+                <tr>
+                  <!-- Left Column -->
+                  <td style="padding:2.5%; width:63%; vertical-align:middle;">
+                    <p style="text-align:center;">
+                      <name>Sam Motamed</name>
+                    </p>
+                    <p>
+                      I am an
+                      <a href="https://ellis.eu/student/2024-saman-motamed">
+                        ELLIS
+                      </a> Ph.D. student at
+                      <a href="https://insait.ai/">INSAIT</a> where I am advised by
+                      Prof. <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a> and currently a Machine Learning Researcher
+  Intern at Netflix.
+                      From May to November 2024, I was a Student Researcher at Google DeepMind in Toronto,
+                      working with Robert Geirhos.
+                    </p>
 
-              </tr>
-            </tbody>
-          </table>
+                    <p>
+                      Before my PhD journey began, I was a visiting researcher from 2021 to 2023 at CMU's
+                      <a href="http://humansensing.cs.cmu.edu/home">Human Sensing Lab</a> working with the amazing
+                      <a href="https://www.cs.cmu.edu/~ftorre/">Fernando De La Torre</a>. I also spent 7 wonderful years
+                      at the University of Toronto's
+                      <a href="https://web.cs.toronto.edu/">Computer Science department</a>
+                      where I earned my HBSc and MS degrees.
+                    </p>
+
+                    <p style="text-align:center;">
+                      <a href="mailto:saman.moatamed@gmail.com">Email</a> &nbsp;/&nbsp;
+                      <a href="data/resume_saman.pdf">CV</a> &nbsp;/&nbsp;
+                      <a href="https://scholar.google.com/citations?user=lKZ7htMAAAAJ&hl=en&oi=ao">
+                        Google Scholar
+                      </a> &nbsp;/&nbsp;
+                      <a href="https://twitter.com/sammtmd">Twitter</a> &nbsp;/&nbsp;
+                      <a href="https://github.com/sam-motamed/">Github</a>
+                    </p>
+                  </td>
+
+                  <!-- Right Column (Slideshow) -->
+                  <td style="padding:2.5%; width:40%; max-width:80%; vertical-align:middle;">
+                    <div class="slideshow-container">
+                      <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                      <button class="next" onclick="changeSlide(1)">&#10095;</button>
+
+                      <div class="slide active">
+                        <img src="images/video-face.gif" alt="7 Magic Mountains" class="hoverZoomLink">
+                        <p class="slide-caption">7 Magic Mountains - Nevada</p>
+                      </div>
+
+                      <div class="slide">
+                        <img src="images/wacv-2026.png" alt="WACV 2026" class="hoverZoomLink">
+                        <p class="slide-caption">WACV 2026 - Arizona</p>
+                      </div>
+
+                      <div class="slide-dots">
+                        <span class="dot active" onclick="goToSlide(0)"></span>
+                        <span class="dot" onclick="goToSlide(1)"></span>
+                      </div>
+                    </div>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      var currentSlide = 0;
+
+      function changeSlide(n) {
+        goToSlide(currentSlide + n);
+      }
+
+      function goToSlide(n) {
+        var slides = document.querySelectorAll('.slide');
+        var dots = document.querySelectorAll('.dot');
+        currentSlide = (n + slides.length) % slides.length;
+        slides.forEach(function(s) { s.classList.remove('active'); });
+        dots.forEach(function(d) { d.classList.remove('active'); });
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+      }
+    </script>
+
+  </body>
 
           <!-- Research Section -->
           <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
