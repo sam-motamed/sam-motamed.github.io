@@ -113,14 +113,25 @@
                 </td>
 
                 <!-- Right Column (Profile Image as GIF) -->
-                <td style="padding:2.5%; width:40%; max-width:80%;">
-                  <a href="images/video-face.gif">
-                    <img src="images/video-face.gif" 
-                         alt="profile photo" 
-                         style="width:100%; max-width:100%;" 
-                         class="hoverZoomLink">
-                  </a>
-                </td>
+              <td style="padding:2.5%; width:40%; max-width:80%;">
+                <div class="slideshow-container">
+                  <!-- Slide 1: GIF -->
+                  <div class="slide active">
+                    <img src="images/video-face.gif" ...>
+                    <p class="slide-caption">7 Magic Mountains - Nevada</p>
+                  </div>
+                  <!-- Slide 2: WACV -->
+                  <div class="slide">
+                    <img src="images/wacv-2026.png" ...>
+                    <p class="slide-caption">WACV 2026 - Arizona</p>
+                  </div>
+                  <!-- Dot navigation -->
+                  <div class="slide-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                  </div>
+                </div>
+              </td>
 
               </tr>
             </tbody>
