@@ -1,566 +1,529 @@
 <!DOCTYPE HTML>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Sam Motamed</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sam Motamed</title>
+  <meta name="author" content="Sam Motamed">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+</head>
 
-    <meta name="author" content="Sam Motamed">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+  <div class="page-wrap">
 
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <!-- Hero / Bio -->
+    <div class="hero">
+      <div class="hero-text">
+        <model-viewer
+          class="rubber-ducky"
+          id="ducky"
+          src="ducky.glb"
+          auto-rotate
+          rotation-per-second="720deg"
+          interaction-prompt="none"
+          camera-orbit="45deg 75deg 105%"
+          disable-zoom
+          disable-pan
+          disable-tap
+          loading="eager"
+          style="pointer-events:none; visibility:hidden;"
+        ></model-viewer>
+        <h1 class="name">Sam Motamed</h1>
+        <p>
+          I am an
+          <a href="https://ellis.eu/student/2024-saman-motamed">ELLIS</a> Ph.D. student at
+          <a href="https://insait.ai/">INSAIT</a> where I am advised by
+          Prof. <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a> and
+          <a href="https://eng.ox.ac.uk/people/iro-laina/">Iro Laina</a>.
+          Previously, I was a Machine Learning Researcher Intern at Netflix,
+          and from May to November 2024, a Student Researcher at Google DeepMind in Toronto,
+          working with <a href="https://robertgeirhos.com/">Robert Geirhos</a>.
+        </p>
+        <p>
+          Before my PhD journey began, I was a visiting researcher from 2021 to 2023 at CMU's
+          <a href="http://humansensing.cs.cmu.edu/home">Human Sensing Lab</a> working with the amazing
+          <a href="https://www.cs.cmu.edu/~ftorre/">Fernando De La Torre</a>. I also spent 7 wonderful years
+          at the University of Toronto's
+          <a href="https://web.cs.toronto.edu/">Computer Science department</a>
+          where I earned my HBSc and MS degrees.
+        </p>
+        <div class="nav-links">
+          <a href="mailto:saman.moatamed@gmail.com">Email</a>
+          <a href="data/resume_saman.pdf">CV</a>
+          <a href="https://scholar.google.com/citations?user=lKZ7htMAAAAJ&hl=en&oi=ao">Google Scholar</a>
+          <a href="https://twitter.com/sammtmd">Twitter</a>
+          <a href="https://github.com/sam-motamed/">Github</a>
+        </div>
+      </div>
 
-    <link rel="icon" 
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22
-  font-size=%2290%22>🤖</text></svg>">
+      <div class="hero-photo">
+        <div class="profile-slideshow">
+          <button class="profile-nav prev" onclick="changeSlide(-1)">&#10094;</button>
+          <button class="profile-nav next" onclick="changeSlide(1)">&#10095;</button>
 
-    <style>
-      /* --- Profile Slideshow --- */
-      .slideshow-container {
-        position: relative;
-        width: 100%;
-      }
+          <div class="slide active">
+            <img src="images/video-face.gif" alt="7 Magic Mountains">
+            <p class="slide-caption">7 Magic Mountains - Nevada</p>
+          </div>
 
-      .slide {
-        display: none;
-        width: 100%;
-        text-align: center;
-      }
+          <div class="slide">
+            <img src="images/wacv-2026.jpg" alt="WACV 2026">
+            <p class="slide-caption">WACV 2026 - Arizona</p>
+          </div>
 
-      .slide.active {
-        display: block;
-      }
+          <div class="profile-dots">
+            <span class="profile-dot active" onclick="goToSlide(0)"></span>
+            <span class="profile-dot" onclick="goToSlide(1)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      .slide img {
-        width: 100%;
-        max-width: 100%;
-      }
+    <!-- Research Section -->
+    <div class="section">
+      <h2 class="section-heading">Research</h2>
+      <p>
+        I'm broadly interested in video generation and video-language models, with a current focus on
+        improving their generation and understanding of physically plausible scenes. I also work on
+        enabling user-intuitive control over generative models and adapting large vision and language
+        models to solve personalized tasks using limited data.
+        Relevant work is <span class="highlight">highlighted here</span>.
+      </p>
 
-      .slide-caption {
-        text-align: center;
-        font-size: 13px;
-        color: #555;
-        margin-top: 6px;
-      }
+      <h3 style="font-size:18px; margin: 20px 0 10px;">Research Projects</h3>
+      <ul class="research-list">
+        <li>
+          <strong>Physics Plausibility in Video Models:</strong> Improving how video generation and video-language models
+          understand and produce physically plausible content.
+        </li>
+        <li>
+          <strong>Generative Vision for Video Synthesis:</strong> Developing user-intuitive controls for generative video
+          models to enable interactive and personalized content creation.
+        </li>
+        <li>
+          <strong>Adaptation of Large Models:</strong> Adapting large-scale vision and language models to solve personalized
+          tasks efficiently using limited data.
+        </li>
+      </ul>
+    </div>
 
-      .prev, .next {
-        cursor: pointer;
-        position: absolute;
-        top: 45%;
-        transform: translateY(-50%);
-        padding: 8px 12px;
-        background-color: rgba(0,0,0,0.35);
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 3px;
-        user-select: none;
-        z-index: 10;
-      }
+    <!-- Publications Section -->
+    <div class="section">
+      <h2 class="section-heading">Publications</h2>
+      <div class="pub-list">
 
-      .prev { left: 0; }
-      .next { right: 0; }
-
-      .prev:hover, .next:hover {
-        background-color: rgba(0,0,0,0.7);
-      }
-
-      .profile-dots {
-        text-align: center;
-        margin-top: 8px;
-      }
-
-      .profile-dot {
-        cursor: pointer;
-        height: 10px;
-        width: 10px;
-        margin: 0 3px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.3s ease;
-      }
-
-      .profile-dot.active { background-color: #555; }
-
-      /* --- Photography Slideshow --- */
-      .dot {
-        cursor: pointer;
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-      }
-
-      .dot.active { background-color: #717171; }
-    </style>
-  </head>
-
-  <body>
-    <!-- Outer constraining table — everything lives inside this -->
-    <table style="width:100%; max-width:800px; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-      <tbody>
-        <tr>
-          <td style="padding:0;">
-
-            <!-- Top Section -->
-            <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-              <tbody>
-                <tr>
-                  <!-- Left Column -->
-                  <td style="padding:2.5%; width:63%; vertical-align:middle;">
-                    <p style="text-align:center;">
-                      <name>Sam Motamed</name>
-                    </p>
-                    <p>
-                      I am an
-                      <a href="https://ellis.eu/student/2024-saman-motamed">ELLIS</a> Ph.D. student at
-                      <a href="https://insait.ai/">INSAIT</a> where I am advised by
-                      Prof. <a href="https://insait.ai/prof-luc-van-gool/">Luc Van Gool</a> and currently a Machine Learning Researcher
-  Intern at Netflix.
-                      From May to November 2024, I was a Student Researcher at Google DeepMind in Toronto,
-                      working with Robert Geirhos.
-                    </p>
-                    <p>
-                      Before my PhD journey began, I was a visiting researcher from 2021 to 2023 at CMU's
-                      <a href="http://humansensing.cs.cmu.edu/home">Human Sensing Lab</a> working with the amazing
-                      <a href="https://www.cs.cmu.edu/~ftorre/">Fernando De La Torre</a>. I also spent 7 wonderful years
-                      at the University of Toronto's
-                      <a href="https://web.cs.toronto.edu/">Computer Science department</a>
-                      where I earned my HBSc and MS degrees.
-                    </p>
-                    <p style="text-align:center;">
-                      <a href="mailto:saman.moatamed@gmail.com">Email</a> &nbsp;/&nbsp;
-                      <a href="data/resume_saman.pdf">CV</a> &nbsp;/&nbsp;
-                      <a href="https://scholar.google.com/citations?user=lKZ7htMAAAAJ&hl=en&oi=ao">Google Scholar</a> &nbsp;/&nbsp;
-                      <a href="https://twitter.com/sammtmd">Twitter</a> &nbsp;/&nbsp;
-                      <a href="https://github.com/sam-motamed/">Github</a>
-                    </p>
-                  </td>
-
-                  <!-- Right Column (Profile Slideshow) -->
-                  <td style="padding:2.5%; width:40%; max-width:80%; vertical-align:middle;">
-                    <div class="slideshow-container">
-                      <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-                      <button class="next" onclick="changeSlide(1)">&#10095;</button>
-
-                      <div class="slide active">
-                        <img src="images/video-face.gif" alt="7 Magic Mountains" class="hoverZoomLink">
-                        <p class="slide-caption">7 Magic Mountains - Nevada</p>
-                      </div>
-
-                      <div class="slide">
-                        <img src="images/wacv-2026.jpg" alt="WACV 2026" class="hoverZoomLink">
-                        <p class="slide-caption">WACV 2026 - Arizona</p>
-                      </div>
-
-                      <div class="profile-dots">
-                        <span class="profile-dot active" onclick="goToSlide(0)"></span>
-                        <span class="profile-dot" onclick="goToSlide(1)"></span>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <!-- Research Section -->
-            <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px; width:100%; vertical-align:middle;">
-                    <heading>Research</heading>
-                    <p>
-                      I'm broadly interested in Generative Vision models for content creation,
-                      and currently focused on Video synthesis. My research aims to gain a better
-                      understanding of how to enable user-intuitive control over Generative models.
-                      I am also interested in bias mitigation and harnessing the power of large vision
-                      and language models by adapting them to solve personalized tasks using limited data.
-                      Relevant work is <span class="highlight">highlighted here</span>.
-                    </p>
-
-                    <heading>Research Projects</heading>
-                    <ul>
-                      <li>
-                        <strong>Generative Vision for Video Synthesis:</strong> Developing user-intuitive controls for generative video
-  models to enable interactive and personalized content creation.
-                      </li>
-                      <li>
-                        <strong>Bias Mitigation in Vision Models:</strong> Investigating strategies to mitigate bias in generative models
-  while preserving their generalization capabilities.
-                      </li>
-                      <li>
-                        <strong>Adaptation of Large Models:</strong> Adapting large-scale vision and language models to solve personalized
-  tasks efficiently using limited data.
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <!-- Publications Section -->
-            <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-              <tbody>
-
-                <heading>Publications</heading>
-
-                <!-- TRAVL -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/travl-logo.png" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://insait-institute.github.io/travl.github.io/">
-                      <papertitle>TRAVL: A Recipe for Making Video-Language Models Better Judges of Physics Implausibility</papertitle>
-                    </a>
-                    <br>
-                    <strong>Saman Motamed</strong>, Minghao Chen, Luc Van Gool, Iro Laina
-                    <br>
-                    <em>arXiv</em>, 2025
-                    <br>
-                    <a href="https://github.com/insait-institute/TRAVL">code</a> &nbsp;/&nbsp;
-                    <a href="https://arxiv.org/abs/2510.07550">arxiv</a>
-                    <p>A recipe to make video language models better understand physics, and a rigorous benchmark to test VLMs on physics
-  understanding.</p>
-                  </td>
-                </tr>
-
-                <!-- Physics IQ -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/physiq.gif" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://physics-iq.github.io/">
-                      <papertitle>Do generative video models learn physical principles from watching videos?</papertitle>
-                    </a>
-                    <br>
-                    <strong>Saman Motamed</strong>, Laura Culp, Kevin Swersky, Priyank Jaini, Robert Geirhos
-                    <br>
-                    <em>WACV</em>, 2026
-                    <br>
-                    <a href="https://github.com/google-deepmind/physics-IQ-benchmark">code</a> &nbsp;/&nbsp;
-                    <a href="https://arxiv.org/abs/2501.09038">arxiv</a>
-                    <p>A benchmark of real videos for testing physics understanding of generative video models.</p>
-                  </td>
-                </tr>
-
-                <!-- Publication 1 -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/lego-teaser.png" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://sam-motamed.github.io/projects/lego">
-                      <papertitle>Lego: Learning to Disentangle and Invert Concepts Beyond Object Appearance in Text-to-Image Diffusion
-  Models</papertitle>
-                    </a>
-                    <br>
-                    <strong>Saman Motamed</strong>, Danda Pani Paudel, Luc Van Gool
-                    <br>
-                    <em>ECCV</em>, 2024
-                    <br>
-                    <a href="https://github.com/sam-motamed/Lego">code</a> &nbsp;/&nbsp;
-                    <a href="https://arxiv.org/abs/2311.13833">arxiv</a>
-                    <p>A method for textual inversion of adjectives and verbs in text-to-image diffusion models.</p>
-                  </td>
-                </tr>
-
-                <!-- Publication 2 -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/edited-burger.gif" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://arxiv.org/abs/2404.05519">
-                      <papertitle>Investigating the Effectiveness of Cross-Attention to Unlock Zero-Shot Editing of Text-to-Video Diffusion
-   Models</papertitle>
-                    </a>
-                    <br>
-                    <strong>Saman Motamed</strong>, Wouter Van Gansbeke, Luc Van Gool
-                    <br>
-                    <em>CVPR Generative Models Workshop</em>, 2024
-                    <br>
-                    <a href="https://github.com/sam-motamed/Video-Editing-X-Attention">code</a> &nbsp;/&nbsp;
-                    <a href="https://arxiv.org/abs/2404.05519">arxiv</a>
-                    <p>Zero-shot control over object shape, position and movement in text-to-video models via cross-attention maps.</p>
-                  </td>
-                </tr>
-
-                <!-- Publication 3 -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/emodiff.png" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://arxiv.org/abs/2404.01243">
-                      <papertitle>A Unified and Interpretable Emotion Representation and Expression Generation</papertitle>
-                    </a>
-                    <br>
-                    Reni Paskaleva, Mykyta Holubakha, Andela Ilic,
-                    <strong>Saman Motamed</strong>, Luc Van Gool, Danda Paudel
-                    <br>
-                    <em>CVPR</em>, 2024
-                    <br>
-                    <a href="https://arxiv.org/abs/2404.01243">arxiv</a>
-                    <p>Fine-grained generation of expressions in conjunction with other textual inputs and offers a new label space for
-  emotions at the same time.</p>
-                  </td>
-                </tr>
-
-                <!-- Publication 4 -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/d3gu-teaser.png" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://openaccess.thecvf.com/content/WACV2024/html/Zhang_D3GU_Multi-Target_Active_Domain_Adaptation_via_Enhan
-  cing_Domain_Alignment_WACV_2024_paper.html">
-                      <papertitle>D3GU: Multi-Target Active Domain Adaptation via Enhancing Domain Alignment</papertitle>
-                    </a>
-                    <br>
-                    Lin Zhang, Linghan Xu, <strong>Saman Motamed</strong>,
-                    Shayok Chakraborty, Fernando De la Torre
-                    <br>
-                    <em>WACV</em>, 2024
-                    <br>
-                    <a href="https://arxiv.org/abs/2401.05465">arxiv</a>
-                    <p>A Multi-Target Active Domain Adaptation (MT-ADA) framework for image classification.</p>
-                  </td>
-                </tr>
-
-                <!-- Publication 5 -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/parallel-teaser.png" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://openaccess.thecvf.com/content/WACV2024/html/Xu_Personalized_Face_Inpainting_With_Diffusion_Models_by_P
-  arallel_Visual_Attention_WACV_2024_paper.html">
-                      <papertitle>Personalized Face Inpainting With Diffusion Models by Parallel Visual Attention</papertitle>
-                    </a>
-                    <br>
-                    Jianjin Xu, <strong>Saman Motamed</strong>,
-                    Praneetha Vaddamanu, Chen Henry Wu, Christian Haene,
-                    Jean-Charles Bazin, Fernando De la Torre
-                    <br>
-                    <em>WACV</em>, 2024
-                    <br>
-                    <a href="https://github.com/AtlantixJJ/PVA-CelebAHQ-IDI">code</a> &nbsp;/&nbsp;
-                    <a href="https://arxiv.org/abs/2312.03556">arxiv</a>
-                    <p>Fast, identity preserving face inpainting with diffusion models.</p>
-                  </td>
-                </tr>
-
-                <!-- Publication 6 -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/patm.png" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://sam-motamed.github.io/projects/patmat">
-                      <papertitle>PATMAT: Person Aware Tuning of Mask-Aware Transformer for Face Inpainting</papertitle>
-                    </a>
-                    <br>
-                    <strong>Saman Motamed</strong>, Jianjin Xu, Chen Henry Wu, Fernando De la Torre
-                    <br>
-                    <em>ICCV</em>, 2023
-                    <br>
-                    <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Motamed_PATMAT_Person_Aware_Tuning_of_Mask-Aware_Transform
-  er_for_Face_Inpainting_ICCV_2023_paper.html">ICCV</a> &nbsp;/&nbsp;
-                    <a href="https://github.com/humansensinglab/PATMAT/tree/main">code</a> &nbsp;/&nbsp;
-                    <a href="https://arxiv.org/abs/2304.06107">arxiv</a>
-                    <p>A tuning method for personalizing inpainting of the face and preserving the identity of a subject.</p>
-                  </td>
-                </tr>
-
-                <!-- Publication 7 -->
-                <tr>
-                  <td style="padding:20px; width:25%; vertical-align:middle;">
-                    <img src="images/promptgen.jpg" alt="fast-texture" width="240" height="240">
-                  </td>
-                  <td style="width:75%; vertical-align:middle;">
-                    <a href="https://chenwu98.github.io/PromptGen/">
-                      <papertitle>Generative Visual Prompt: Unifying Distributional Control of Pre-Trained Generative Models</papertitle>
-                    </a>
-                    <br>
-                    Chen Henry Wu, <strong>Saman Motamed</strong>,
-                    Shaunak Srivastava, Fernando De La Torre
-                    <br>
-                    <em>NeurIPS</em>, 2022
-                    <br>
-                    <a 
-  href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/8cb1c53863b290ee09b94d17f16ef355-Abstract-Conference.html">NeurIPS</a>
-  &nbsp;/&nbsp;
-                    <a href="https://github.com/chenwu98/generative-visual-prompt">code</a> &nbsp;/&nbsp;
-                    <a href="https://arxiv.org/abs/2209.06970">arxiv</a>
-                    <p>A framework for defining control over latent-based generative models.</p>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-
-            <!-- Talks Section -->
-            <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px; width:100%; vertical-align:middle;">
-                    <heading>Talks</heading>
-                    <p>Invited talks and presentations.</p>
-
-                    <table style="width:100%; border:0; border-spacing:0; border-collapse:separate;">
-                      <tbody>
-
-                        <!-- Vector Institute -->
-                        <tr>
-                          <td style="padding:12px 0; vertical-align:top; width:20%;">
-                            <strong>Dec 16, 2025</strong>
-                          </td>
-                          <td style="padding:12px 0; vertical-align:top; width:80%;">
-                            <span style="font-weight:600;">Improving VLM's understanding of physically implausible scenes.</span>
-                            <br>
-                            <span>Invited Talk • Vector Institute, Toronto</span>
-                            <br>
-                            <span>Invited by Dr. Babak Taati • <a href="https://www.cs.toronto.edu/~taati/journalclub.html">Journal
-  Club</a></span>
-                          </td>
-                        </tr>
-
-                        <!-- Stability AI -->
-                        <tr>
-                          <td style="padding:12px 0; vertical-align:top; width:20%;">
-                            <strong>Jan 30, 2025</strong>
-                          </td>
-                          <td style="padding:12px 0; vertical-align:top; width:80%;">
-                            <span style="font-weight:600;">How to benchmark video generative models for their physics understanding?</span>
-                            <br>
-                            <span>Invited Talk • Stability AI Reading Group</span>
-                            <br>
-                            <span>Invited by Rahim Entezari</span>
-                          </td>
-                        </tr>
-
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <!-- Photography Section -->
-            <p>
-              Somewhat related to computer vision and content creation, I enjoy film photography on 35 mm and medium format film. You can
-  view some of my photos below.
-            </p>
-
-            <div class="slideshow-container">
-              <div class="slides">
-                <img src="photography/p1.jpg" style="width:100%">
-              </div>
-              <div class="slides">
-                <img src="photography/p2.jpg" style="width:100%">
-              </div>
-              <div class="slides">
-                <img src="photography/p3.jpg" style="width:100%">
-              </div>
-              <div class="slides">
-                <img src="photography/p4.jpg" style="width:100%">
-              </div>
-              <div class="slides">
-                <img src="photography/p5.jpg" style="width:100%">
-              </div>
-              <div class="slides">
-                <img src="photography/p6.jpg" style="width:100%">
-              </div>
-              <div class="slides">
-                <img src="photography/p7.jpg" style="width:100%">
-              </div>
-
-              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <!-- TRAVL -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/travl-logo.png" alt="TRAVL">
+          </div>
+          <div class="pub-info">
+            <a href="https://insait-institute.github.io/travl.github.io/">
+              <span class="paper-title">TRAVL: A Recipe for Making Video-Language Models Better Judges of Physics Implausibility</span>
+            </a>
+            <div class="authors"><strong>Saman Motamed</strong>, Minghao Chen, Luc Van Gool, Iro Laina</div>
+            <div class="venue"><em>arXiv</em>, 2025</div>
+            <div class="pub-links">
+              <a href="https://github.com/insait-institute/TRAVL">code</a> &nbsp;/&nbsp;
+              <a href="https://arxiv.org/abs/2510.07550">arxiv</a>
             </div>
+            <p>A recipe to make video language models better understand physics, and a rigorous benchmark to test VLMs on physics understanding.</p>
+          </div>
+        </div>
 
-            <br>
-            <div style="text-align:center;">
-              <span class="dot" onclick="currentSlide(1)"></span>
-              <span class="dot" onclick="currentSlide(2)"></span>
-              <span class="dot" onclick="currentSlide(3)"></span>
+        <!-- Physics IQ -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/physiq.gif" alt="Physics IQ">
+          </div>
+          <div class="pub-info">
+            <a href="https://physics-iq.github.io/">
+              <span class="paper-title">Do generative video models learn physical principles from watching videos?</span>
+            </a>
+            <div class="authors"><strong>Saman Motamed</strong>, Laura Culp, Kevin Swersky, Priyank Jaini, Robert Geirhos</div>
+            <div class="venue"><em>WACV</em>, 2026</div>
+            <div class="pub-links">
+              <a href="https://github.com/google-deepmind/physics-IQ-benchmark">code</a> &nbsp;/&nbsp;
+              <a href="https://arxiv.org/abs/2501.09038">arxiv</a>
             </div>
+            <p>A benchmark of real videos for testing physics understanding of generative video models.</p>
+          </div>
+        </div>
 
-            <!-- Footer -->
-            <table style="width:100%; border:0; border-spacing:0; border-collapse:separate; margin:0 auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:0;">
-                    <br>
-                    <p style="text-align:right; font-size:small;">
-                      <center>
-                        Feel free to steal this website's
-                        <a href="https://github.com/jonbarron/jonbarron_website">source code</a>
-                      </center>
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- Lego -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/lego-teaser.png" alt="Lego">
+          </div>
+          <div class="pub-info">
+            <a href="https://sam-motamed.github.io/projects/lego">
+              <span class="paper-title">Lego: Learning to Disentangle and Invert Concepts Beyond Object Appearance in Text-to-Image Diffusion Models</span>
+            </a>
+            <div class="authors"><strong>Saman Motamed</strong>, Danda Pani Paudel, Luc Van Gool</div>
+            <div class="venue"><em>ECCV</em>, 2024</div>
+            <div class="pub-links">
+              <a href="https://github.com/sam-motamed/Lego">code</a> &nbsp;/&nbsp;
+              <a href="https://arxiv.org/abs/2311.13833">arxiv</a>
+            </div>
+            <p>A method for textual inversion of adjectives and verbs in text-to-image diffusion models.</p>
+          </div>
+        </div>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <!-- Cross-Attention Video Editing -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/edited-burger.gif" alt="Video Editing">
+          </div>
+          <div class="pub-info">
+            <a href="https://arxiv.org/abs/2404.05519">
+              <span class="paper-title">Investigating the Effectiveness of Cross-Attention to Unlock Zero-Shot Editing of Text-to-Video Diffusion Models</span>
+            </a>
+            <div class="authors"><strong>Saman Motamed</strong>, Wouter Van Gansbeke, Luc Van Gool</div>
+            <div class="venue"><em>CVPR Generative Models Workshop</em>, 2024</div>
+            <div class="pub-links">
+              <a href="https://github.com/sam-motamed/Video-Editing-X-Attention">code</a> &nbsp;/&nbsp;
+              <a href="https://arxiv.org/abs/2404.05519">arxiv</a>
+            </div>
+            <p>Zero-shot control over object shape, position and movement in text-to-video models via cross-attention maps.</p>
+          </div>
+        </div>
 
-    <!-- Profile Slideshow JS -->
-    <script>
-      var currentProfileSlide = 0;
+        <!-- EmoDiff -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/emodiff.png" alt="EmoDiff">
+          </div>
+          <div class="pub-info">
+            <a href="https://arxiv.org/abs/2404.01243">
+              <span class="paper-title">A Unified and Interpretable Emotion Representation and Expression Generation</span>
+            </a>
+            <div class="authors">Reni Paskaleva, Mykyta Holubakha, Andela Ilic, <strong>Saman Motamed</strong>, Luc Van Gool, Danda Paudel</div>
+            <div class="venue"><em>CVPR</em>, 2024</div>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2404.01243">arxiv</a>
+            </div>
+            <p>Fine-grained generation of expressions in conjunction with other textual inputs and offers a new label space for emotions at the same time.</p>
+          </div>
+        </div>
 
-      function changeSlide(n) {
-        goToSlide(currentProfileSlide + n);
+        <!-- D3GU -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/d3gu-teaser.png" alt="D3GU">
+          </div>
+          <div class="pub-info">
+            <a href="https://openaccess.thecvf.com/content/WACV2024/html/Zhang_D3GU_Multi-Target_Active_Domain_Adaptation_via_Enhancing_Domain_Alignment_WACV_2024_paper.html">
+              <span class="paper-title">D3GU: Multi-Target Active Domain Adaptation via Enhancing Domain Alignment</span>
+            </a>
+            <div class="authors">Lin Zhang, Linghan Xu, <strong>Saman Motamed</strong>, Shayok Chakraborty, Fernando De la Torre</div>
+            <div class="venue"><em>WACV</em>, 2024</div>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2401.05465">arxiv</a>
+            </div>
+            <p>A Multi-Target Active Domain Adaptation (MT-ADA) framework for image classification.</p>
+          </div>
+        </div>
+
+        <!-- Parallel Visual Attention -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/parallel-teaser.png" alt="Parallel Visual Attention">
+          </div>
+          <div class="pub-info">
+            <a href="https://openaccess.thecvf.com/content/WACV2024/html/Xu_Personalized_Face_Inpainting_With_Diffusion_Models_by_Parallel_Visual_Attention_WACV_2024_paper.html">
+              <span class="paper-title">Personalized Face Inpainting With Diffusion Models by Parallel Visual Attention</span>
+            </a>
+            <div class="authors">Jianjin Xu, <strong>Saman Motamed</strong>, Praneetha Vaddamanu, Chen Henry Wu, Christian Haene, Jean-Charles Bazin, Fernando De la Torre</div>
+            <div class="venue"><em>WACV</em>, 2024</div>
+            <div class="pub-links">
+              <a href="https://github.com/AtlantixJJ/PVA-CelebAHQ-IDI">code</a> &nbsp;/&nbsp;
+              <a href="https://arxiv.org/abs/2312.03556">arxiv</a>
+            </div>
+            <p>Fast, identity preserving face inpainting with diffusion models.</p>
+          </div>
+        </div>
+
+        <!-- PATMAT -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/patm.png" alt="PATMAT">
+          </div>
+          <div class="pub-info">
+            <a href="https://sam-motamed.github.io/projects/patmat">
+              <span class="paper-title">PATMAT: Person Aware Tuning of Mask-Aware Transformer for Face Inpainting</span>
+            </a>
+            <div class="authors"><strong>Saman Motamed</strong>, Jianjin Xu, Chen Henry Wu, Fernando De la Torre</div>
+            <div class="venue"><em>ICCV</em>, 2023</div>
+            <div class="pub-links">
+              <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Motamed_PATMAT_Person_Aware_Tuning_of_Mask-Aware_Transformer_for_Face_Inpainting_ICCV_2023_paper.html">ICCV</a> &nbsp;/&nbsp;
+              <a href="https://github.com/humansensinglab/PATMAT/tree/main">code</a> &nbsp;/&nbsp;
+              <a href="https://arxiv.org/abs/2304.06107">arxiv</a>
+            </div>
+            <p>A tuning method for personalizing inpainting of the face and preserving the identity of a subject.</p>
+          </div>
+        </div>
+
+        <!-- PromptGen -->
+        <div class="pub-entry">
+          <div class="pub-img">
+            <img src="images/promptgen.jpg" alt="PromptGen">
+          </div>
+          <div class="pub-info">
+            <a href="https://chenwu98.github.io/PromptGen/">
+              <span class="paper-title">Generative Visual Prompt: Unifying Distributional Control of Pre-Trained Generative Models</span>
+            </a>
+            <div class="authors">Chen Henry Wu, <strong>Saman Motamed</strong>, Shaunak Srivastava, Fernando De La Torre</div>
+            <div class="venue"><em>NeurIPS</em>, 2022</div>
+            <div class="pub-links">
+              <a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/8cb1c53863b290ee09b94d17f16ef355-Abstract-Conference.html">NeurIPS</a> &nbsp;/&nbsp;
+              <a href="https://github.com/chenwu98/generative-visual-prompt">code</a> &nbsp;/&nbsp;
+              <a href="https://arxiv.org/abs/2209.06970">arxiv</a>
+            </div>
+            <p>A framework for defining control over latent-based generative models.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Talks Section -->
+    <div class="section">
+      <h2 class="section-heading">Talks</h2>
+      <p>Invited talks and presentations.</p>
+
+      <div class="talks-list">
+        <div class="talk-entry">
+          <div class="talk-date">Dec 16, 2025</div>
+          <div class="talk-info">
+            <div class="talk-title">Improving VLM's understanding of physically implausible scenes.</div>
+            <div class="talk-meta">
+              Invited Talk &middot; Vector Institute, Toronto<br>
+              Invited by Dr. Babak Taati &middot; <a href="https://www.cs.toronto.edu/~taati/journalclub.html">Journal Club</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="talk-entry">
+          <div class="talk-date">Jan 30, 2025</div>
+          <div class="talk-info">
+            <div class="talk-title">How to benchmark video generative models for their physics understanding?</div>
+            <div class="talk-meta">
+              Invited Talk &middot; Stability AI Reading Group<br>
+              Invited by Rahim Entezari
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photography Section -->
+    <div class="section photo-section">
+      <h2 class="section-heading">Film Photography</h2>
+      <p>
+        Somewhat related to computer vision and content creation, I enjoy film photography on 35 mm and medium format film.
+      </p>
+
+      <div class="photo-slideshow">
+        <div class="photo-slide active">
+          <img src="photography/p1.jpg" alt="Turret Arch, Arches National Park">
+          <div class="photo-caption">
+            Turret Arch
+            <div class="photo-location">Arches National Park, Utah</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/p2.jpg" alt="Goblin Valley, Utah">
+          <div class="photo-caption">
+            Goblin Valley
+            <div class="photo-location">Utah</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/p3.jpg" alt="Utah landscape">
+          <div class="photo-caption">
+            Utah
+            <div class="photo-location">Utah</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/p4.jpg" alt="Athens, Greece">
+          <div class="photo-caption">
+            Athens
+            <div class="photo-location">Greece</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/p5.jpg" alt="Highway 1, California">
+          <div class="photo-caption">
+            Highway 1
+            <div class="photo-location">California</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/p6.jpg" alt="Big Sur, California">
+          <div class="photo-caption">
+            Big Sur
+            <div class="photo-location">California</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/p7.jpg" alt="Big Sur, California">
+          <div class="photo-caption">
+            Big Sur
+            <div class="photo-location">California</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/Photo12_9_left.jpeg" alt="Port Meadow, Oxford">
+          <div class="photo-caption">
+            Port Meadow
+            <div class="photo-location">Oxford, UK</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/000596010018_1.jpg" alt="Haleakala National Park, Hawaii">
+          <div class="photo-caption">
+            Haleakal&#257; National Park
+            <div class="photo-location">Hawaii</div>
+          </div>
+        </div>
+        <div class="photo-slide">
+          <img src="photography/000596010034_1.jpg" alt="Mesa Arch, Utah">
+          <div class="photo-caption">
+            Mesa Arch
+            <div class="photo-location">Utah</div>
+          </div>
+        </div>
+
+        <a class="photo-nav prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="photo-nav next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+
+      <div class="photo-dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+        <span class="dot" onclick="currentSlide(8)"></span>
+        <span class="dot" onclick="currentSlide(9)"></span>
+        <span class="dot" onclick="currentSlide(10)"></span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      &copy; Sam Motamed
+    </div>
+
+  </div>
+
+  <!-- Profile Slideshow JS -->
+  <script>
+    var currentProfileSlide = 0;
+
+    function changeSlide(n) {
+      goToSlide(currentProfileSlide + n);
+    }
+
+    function goToSlide(n) {
+      var slides = document.querySelectorAll('.slide');
+      var dots = document.querySelectorAll('.profile-dot');
+      currentProfileSlide = (n + slides.length) % slides.length;
+      slides.forEach(function(s) { s.classList.remove('active'); });
+      dots.forEach(function(d) { d.classList.remove('active'); });
+      slides[currentProfileSlide].classList.add('active');
+      dots[currentProfileSlide].classList.add('active');
+    }
+  </script>
+
+  <!-- Photography Slideshow JS -->
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var slides = document.getElementsByClassName("photo-slide");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) { slideIndex = 1; }
+      if (n < 1) { slideIndex = slides.length; }
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
       }
-
-      function goToSlide(n) {
-        var slides = document.querySelectorAll('.slide');
-        var dots = document.querySelectorAll('.profile-dot');
-        currentProfileSlide = (n + slides.length) % slides.length;
-        slides.forEach(function(s) { s.classList.remove('active'); });
-        dots.forEach(function(d) { d.classList.remove('active'); });
-        slides[currentProfileSlide].classList.add('active');
-        dots[currentProfileSlide].classList.add('active');
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
       }
-    </script>
+      slides[slideIndex - 1].classList.add("active");
+      dots[slideIndex - 1].classList.add("active");
+    }
 
-    <!-- Photography Slideshow JS -->
-    <script>
-      let slideIndex = 1;
-      showSlides(slideIndex);
+    // Keyboard navigation for photo slideshow
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') plusSlides(-1);
+      if (e.key === 'ArrowRight') plusSlides(1);
+    });
+  </script>
 
-      function plusSlides(n) {
-        showSlides(slideIndex += n);
+  <!-- Rubber Ducky Easter Egg JS -->
+  <script>
+    (function() {
+      var heroText = document.querySelector('.hero-text');
+      var ducky = document.getElementById('ducky');
+      var flying = false;
+      var duckyReady = false;
+
+      // Wait for model to fully load before enabling
+      ducky.addEventListener('load', function() {
+        duckyReady = true;
+        ducky.style.visibility = 'visible';
+      });
+
+      heroText.addEventListener('mouseenter', function() {
+        if (flying || !duckyReady) return;
+        flying = true;
+        ducky.classList.add('flying');
+        ducky.addEventListener('animationend', function handler() {
+          ducky.classList.remove('flying');
+          ducky.removeEventListener('animationend', handler);
+          flying = false;
+        });
+      });
+    })();
+  </script>
+
+  <!-- Dark Mode JS -->
+  <script>
+    function toggleTheme() {
+      var body = document.body;
+      var btn = document.querySelector('.theme-toggle');
+      body.classList.toggle('dark');
+      var isDark = body.classList.contains('dark');
+      btn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    // Restore saved theme
+    (function() {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+        document.querySelector('.theme-toggle').textContent = '☀️';
       }
+    })();
+  </script>
 
-      function currentSlide(n) {
-        showSlides(slideIndex = n);
-      }
-
-      function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("slides");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1; }
-        if (n < 1) { slideIndex = slides.length; }
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-      }
-    </script>
-
-  </body>
-  </html>
+</body>
+</html>
