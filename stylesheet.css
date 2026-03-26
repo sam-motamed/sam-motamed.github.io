@@ -529,39 +529,123 @@ span.highlight {
   --poster-color: transparent;
 }
 
-.rubber-ducky.flying {
-  animation: duckBounce 2s ease-in-out forwards;
+/* Animation classes */
+.rubber-ducky.anim-sweep    { animation: duckSweep 2s ease-in-out forwards; }
+.rubber-ducky.anim-explode  { animation: duckExplode 2s ease-in-out forwards; }
+.rubber-ducky.anim-bounce   { animation: duckDrop 2.5s cubic-bezier(.22,.68,.31,1) forwards; }
+.rubber-ducky.anim-spinout  { animation: duckSpinOut 2.2s ease-in forwards; }
+.rubber-ducky.anim-inflate  { animation: duckInflate 2.2s ease-in-out forwards; }
+.rubber-ducky.anim-zoomby   { animation: duckZoomBy 0.8s linear forwards; }
+.rubber-ducky.anim-melt     { animation: duckMelt 2.5s ease-in-out forwards; }
+.rubber-ducky.anim-enter    { animation: duckEnterShake 1.2s ease-out forwards; }
+
+/* Sweep — classic fly-across */
+@keyframes duckSweep {
+  0%   { left:-200px; top:40%; opacity:0; transform:translateY(-50%) scale(.7); }
+  15%  { opacity:1; transform:translateY(-50%) scale(1); }
+  45%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1.1); }
+  55%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1.1); }
+  100% { left:115%; top:40%; opacity:0; transform:translateY(-50%) scale(.7); }
 }
 
-@keyframes duckBounce {
-  0% {
-    left: -200px;
-    top: 40%;
-    opacity: 0;
-    transform: translateY(-50%) scale(0.7);
-  }
-  15% {
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
-  }
-  45% {
-    left: 40%;
-    top: 40%;
-    opacity: 1;
-    transform: translateY(-50%) scale(1.1);
-  }
-  55% {
-    left: 40%;
-    top: 40%;
-    opacity: 1;
-    transform: translateY(-50%) scale(1.1);
-  }
-  100% {
-    left: 115%;
-    top: 40%;
-    opacity: 0;
-    transform: translateY(-50%) scale(0.7);
-  }
+/* Explode — fly in, swell, blow up in a fireball */
+@keyframes duckExplode {
+  0%   { left:-200px; top:40%; opacity:0; transform:translateY(-50%) scale(.7); }
+  30%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1); }
+  50%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1.3);
+         filter:drop-shadow(0 0 20px rgba(255,150,0,.6)) saturate(2) brightness(1.4); }
+  75%  { left:40%; top:40%; opacity:.7; transform:translateY(-50%) scale(3.5) rotate(20deg);
+         filter:drop-shadow(0 0 50px rgba(255,80,0,.8)) saturate(2.5) brightness(2); }
+  100% { left:40%; top:40%; opacity:0; transform:translateY(-50%) scale(7) rotate(45deg);
+         filter:drop-shadow(0 0 80px rgba(255,30,0,.4)) brightness(3) blur(15px); }
+}
+
+/* Drop — fall from above, squash-bounce, tumble away */
+@keyframes duckDrop {
+  0%   { left:40%; top:-200px; opacity:0; transform:translate(-50%,0) scale(.8); }
+  8%   { opacity:1; }
+  35%  { top:40%; transform:translate(-50%,0) scale(1.15,.85); }
+  45%  { top:22%; transform:translate(-50%,0) scale(.9,1.1); }
+  58%  { top:40%; transform:translate(-50%,0) scale(1.08,.92); }
+  66%  { top:30%; transform:translate(-50%,0) scale(.95,1.05); }
+  76%  { top:40%; transform:translate(-50%,0) scale(1); }
+  88%  { top:40%; opacity:1; transform:translate(-50%,0) scale(1); }
+  100% { top:120%; opacity:0; transform:translate(-50%,0) scale(.4) rotate(200deg); }
+}
+
+/* Spin-out — spirals in, then flings wildly off-screen */
+@keyframes duckSpinOut {
+  0%   { left:-200px; top:40%; opacity:0; transform:translateY(-50%) scale(.7) rotate(0); }
+  25%  { left:35%; top:40%; opacity:1; transform:translateY(-50%) scale(1) rotate(360deg); }
+  45%  { left:40%; top:38%; opacity:1; transform:translateY(-50%) scale(1.1) rotate(720deg); }
+  100% { left:110%; top:-30%; opacity:0; transform:translateY(-50%) scale(.2) rotate(2880deg); }
+}
+
+/* Inflate-pop — swells bigger and bigger, then *POP* vanishes */
+@keyframes duckInflate {
+  0%   { left:-200px; top:40%; opacity:0; transform:translateY(-50%) scale(.7); }
+  25%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1); }
+  50%  { transform:translateY(-50%) scale(1.5); }
+  70%  { transform:translateY(-50%) scale(2.2);
+         filter:drop-shadow(4px 6px 20px rgba(0,0,0,.4)) saturate(2) brightness(1.4); }
+  84%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(3);
+         filter:drop-shadow(4px 6px 30px rgba(0,0,0,.5)) saturate(2.2) brightness(1.6); }
+  85%  { opacity:0; transform:translateY(-50%) scale(.01); }
+  100% { left:40%; top:40%; opacity:0; transform:translateY(-50%) scale(0); }
+}
+
+/* Zoom-by — blistering speed fly-through, motion-blurred */
+@keyframes duckZoomBy {
+  0%   { left:-15%; top:40%; opacity:0; transform:translateY(-50%) scale(.2) scaleX(2.5); }
+  15%  { opacity:1; }
+  50%  { left:45%; top:40%; opacity:1; transform:translateY(-50%) scale(1.8);
+         filter:drop-shadow(4px 6px 12px rgba(0,0,0,.3)) saturate(1.8) brightness(1.1) blur(3px); }
+  85%  { opacity:1; }
+  100% { left:115%; top:40%; opacity:0; transform:translateY(-50%) scale(.2) scaleX(2.5); filter:blur(5px); }
+}
+
+/* Melt — arrives normally, then oozes into a puddle */
+@keyframes duckMelt {
+  0%   { left:-200px; top:40%; opacity:0; transform:translateY(-50%) scale(.7); }
+  30%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1); }
+  50%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1) skewX(0); }
+  70%  { left:40%; top:45%; opacity:.9; transform:translateY(-50%) scaleX(1.4) scaleY(.6) skewX(5deg);
+         filter:drop-shadow(4px 6px 12px rgba(0,0,0,.3)) saturate(1.2) brightness(.9); }
+  90%  { left:40%; top:52%; opacity:.5; transform:translateY(-50%) scaleX(2) scaleY(.2) skewX(10deg);
+         filter:drop-shadow(4px 6px 12px rgba(0,0,0,.2)) saturate(.8) brightness(.7) blur(2px); }
+  100% { left:40%; top:55%; opacity:0; transform:translateY(-50%) scaleX(2.5) scaleY(.05); filter:blur(5px); }
+}
+
+/* Enter-and-shake — used before shatter / split */
+@keyframes duckEnterShake {
+  0%   { left:-200px; top:40%; opacity:0; transform:translateY(-50%) scale(.7); }
+  55%  { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1.1); }
+  63%  { transform:translateY(-50%) scale(1.1) rotate(-6deg); }
+  71%  { transform:translateY(-50%) scale(1.1) rotate(6deg); }
+  79%  { transform:translateY(-50%) scale(1.1) rotate(-4deg); }
+  87%  { transform:translateY(-50%) scale(1.1) rotate(4deg); }
+  95%  { transform:translateY(-50%) scale(1.1) rotate(-2deg); }
+  100% { left:40%; top:40%; opacity:1; transform:translateY(-50%) scale(1.1) rotate(0); }
+}
+
+/* Fragment pieces for shatter / split */
+.ducky-fragment {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transition: transform .8s cubic-bezier(.25,.46,.45,.94), opacity .8s ease-out;
+  filter: drop-shadow(2px 3px 6px rgba(0,0,0,0.3)) saturate(1.8) brightness(1.1);
+}
+
+/* Spark particles for inflate-pop */
+.ducky-spark {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: transform .6s cubic-bezier(.2,.8,.3,1), opacity .6s ease-out;
 }
 
 /* --- Theme Toggle --- */

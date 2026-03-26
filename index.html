@@ -486,20 +486,169 @@
       var flying = false;
       var duckyReady = false;
 
-      // Wait for model to fully load before enabling
       ducky.addEventListener('load', function() {
         duckyReady = true;
         ducky.style.visibility = 'visible';
       });
 
+      var cssAnims = [
+        'anim-sweep', 'anim-explode', 'anim-bounce',
+        'anim-spinout', 'anim-inflate', 'anim-zoomby', 'anim-melt'
+      ];
+      var jsAnims = ['shatter', 'split'];
+      var allAnims = cssAnims.concat(jsAnims);
+
+      function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+
+      function resetDucky() {
+        cssAnims.concat(['anim-enter']).forEach(function(c) { ducky.classList.remove(c); });
+        ducky.style.cssText = 'pointer-events:none; visibility:visible;';
+        flying = false;
+      }
+
+      /* Snapshot the model-viewer for fragment effects */
+      function getSnapshot() {
+        try { return ducky.toDataURL('image/png'); } catch(e) { return null; }
+      }
+
+      /* Build fragment divs at the ducky's current viewport position */
+      function makeFragments(imgUrl, rect, clips, offsets) {
+        var frags = [];
+        clips.forEach(function(clip, i) {
+          var el = document.createElement('div');
+          el.className = 'ducky-fragment';
+          el.style.width  = rect.width  + 'px';
+          el.style.height = rect.height + 'px';
+          el.style.left   = rect.left   + 'px';
+          el.style.top    = rect.top    + 'px';
+          el.style.opacity = '1';
+          if (imgUrl) {
+            el.style.backgroundImage = 'url(' + imgUrl + ')';
+            el.style.backgroundSize  = '100% 100%';
+          } else {
+            el.style.backgroundColor = '#f5c518';
+            el.style.borderRadius = '50%';
+          }
+          el.style.clipPath       = clip;
+          el.style.webkitClipPath = clip;
+          document.body.appendChild(el);
+          frags.push({ el: el, off: offsets[i] });
+        });
+        return frags;
+      }
+
+      /* Animate fragments outward, then clean up */
+      function scatter(frags, ms) {
+        frags[0].el.offsetHeight; /* force reflow */
+        frags.forEach(function(f) {
+          f.el.style.transform = 'translate(' + f.off.x + 'px,' + f.off.y + 'px) rotate(' + f.off.r + 'deg) scale(' + f.off.s + ')';
+          f.el.style.opacity = '0';
+        });
+        setTimeout(function() {
+          frags.forEach(function(f) { f.el.remove(); });
+          resetDucky();
+        }, ms || 900);
+      }
+
+      /* Burst small sparks outward (used after inflate-pop) */
+      function sparks(cx, cy, count) {
+        var colors = ['#f5c518','#ff6b35','#ffe066','#fff','#ffa94d'];
+        for (var i = 0; i < count; i++) {
+          var s = document.createElement('div');
+          s.className = 'ducky-spark';
+          s.style.left = cx + 'px';
+          s.style.top  = cy + 'px';
+          s.style.background = colors[i % colors.length];
+          s.style.opacity = '1';
+          var sz = 4 + Math.random() * 10;
+          s.style.width = sz + 'px';
+          s.style.height = sz + 'px';
+          document.body.appendChild(s);
+          var angle = (i / count) * Math.PI * 2 + (Math.random() - .5);
+          var dist  = 80 + Math.random() * 160;
+          (function(el, a, d) {
+            el.offsetHeight;
+            el.style.transform = 'translate(' + (Math.cos(a)*d) + 'px,' + (Math.sin(a)*d) + 'px) scale(.2)';
+            el.style.opacity = '0';
+            setTimeout(function() { el.remove(); }, 700);
+          })(s, angle, dist);
+        }
+      }
+
+      /* SHATTER — enter, shake, then burst into 8 triangular shards */
+      function runShatter() {
+        ducky.classList.add('anim-enter');
+        ducky.addEventListener('animationend', function h() {
+          ducky.removeEventListener('animationend', h);
+          var rect = ducky.getBoundingClientRect();
+          var img  = getSnapshot();
+          ducky.style.opacity = '0';
+
+          var clips = [], offsets = [], n = 8, dist = 220;
+          for (var i = 0; i < n; i++) {
+            var a1 = (i / n) * 360, a2 = ((i + 1) / n) * 360;
+            var toX = function(deg) { return 50 + 50 * Math.cos(deg * Math.PI / 180); };
+            var toY = function(deg) { return 50 + 50 * Math.sin(deg * Math.PI / 180); };
+            clips.push('polygon(50% 50%,' + toX(a1)+'% '+toY(a1)+'%,' + toX(a2)+'% '+toY(a2)+'%)');
+            var mid = ((a1 + a2) / 2) * Math.PI / 180;
+            offsets.push({
+              x: Math.cos(mid) * dist * (.7 + Math.random() * .6),
+              y: Math.sin(mid) * dist * (.7 + Math.random() * .6),
+              r: (Math.random() - .5) * 360,
+              s: .2 + Math.random() * .3
+            });
+          }
+          scatter(makeFragments(img, rect, clips, offsets), 1000);
+        });
+      }
+
+      /* SPLIT — enter, shake, then crack into two halves */
+      function runSplit() {
+        ducky.classList.add('anim-enter');
+        ducky.addEventListener('animationend', function h() {
+          ducky.removeEventListener('animationend', h);
+          var rect = ducky.getBoundingClientRect();
+          var img  = getSnapshot();
+          ducky.style.opacity = '0';
+
+          var clips = ['inset(0 0 50% 0)', 'inset(50% 0 0 0)'];
+          var offsets = [
+            { x: -60 - Math.random()*40, y: -160 - Math.random()*40, r: -20 - Math.random()*20, s: .7 },
+            { x:  60 + Math.random()*40, y:  160 + Math.random()*40, r:  20 + Math.random()*20, s: .7 }
+          ];
+          scatter(makeFragments(img, rect, clips, offsets), 1100);
+        });
+      }
+
+      /* Wire up the inflate-pop spark burst via a timed callback */
+      function runInflate() {
+        ducky.classList.add('anim-inflate');
+        /* Pop happens at ~85% of 2.2s ≈ 1870ms */
+        setTimeout(function() {
+          var r = ducky.getBoundingClientRect();
+          sparks(r.left + r.width / 2, r.top + r.height / 2, 18);
+        }, 1860);
+        ducky.addEventListener('animationend', function h() {
+          ducky.removeEventListener('animationend', h);
+          resetDucky();
+        });
+      }
+
       heroText.addEventListener('mouseenter', function() {
         if (flying || !duckyReady) return;
         flying = true;
-        ducky.classList.add('flying');
-        ducky.addEventListener('animationend', function handler() {
-          ducky.classList.remove('flying');
-          ducky.removeEventListener('animationend', handler);
-          flying = false;
+
+        var anim = pick(allAnims);
+
+        if (anim === 'shatter')      return runShatter();
+        if (anim === 'split')        return runSplit();
+        if (anim === 'anim-inflate') return runInflate();
+
+        /* All other CSS-only animations */
+        ducky.classList.add(anim);
+        ducky.addEventListener('animationend', function h() {
+          ducky.removeEventListener('animationend', h);
+          resetDucky();
         });
       });
     })();
