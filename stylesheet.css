@@ -831,36 +831,38 @@ body.dark .profile-dot.active {
   }
 }
 /* Job Market Banner Styles */
-.job-banner {
-  color: #dc2626; /* Strong red font */
-  margin: 30px 0 25px 0; /* Generous spacing to separate it from the bio */
+.job-banner, 
+.job-banner strong {
+  color: #dc2626 !important; /* Forces the red font */
+  margin: 30px 0 25px 0; 
   padding-top: 15px;
-  border-top: 1px dashed #fca5a5; /* Subtle top divider to visually separate it */
+  border-top: 1px dashed #fca5a5; 
   font-size: 16px;
   line-height: 1.5;
 }
 
 /* Link inside the banner */
 .job-banner a {
-  color: #dc2626; 
-  text-decoration: underline;
+  color: #dc2626 !important; 
+  text-decoration: underline !important;
   font-weight: bold;
 }
 
 .job-banner a:hover {
-  color: #991b1b;
+  color: #991b1b !important;
 }
 
 /* Dark Mode Overrides */
-body.dark .job-banner {
-  color: #ef4444; /* Brighter red so it pops on dark backgrounds */
+body.dark .job-banner,
+body.dark .job-banner strong {
+  color: #ef4444 !important; /* Brighter red for dark backgrounds */
   border-top: 1px dashed #7f1d1d;
 }
 
 body.dark .job-banner a {
-  color: #f87171;
+  color: #f87171 !important;
 }
 
 body.dark .job-banner a:hover {
-  color: #fca5a5;
+  color: #fca5a5 !important;
 }
