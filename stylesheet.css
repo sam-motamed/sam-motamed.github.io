@@ -830,3 +830,37 @@ body.dark .profile-dot.active {
     font-size: 28px;
   }
 }
+/* Job Market Banner Styles */
+.job-banner {
+  color: #dc2626; /* Strong red font */
+  margin: 30px 0 25px 0; /* Generous spacing to separate it from the bio */
+  padding-top: 15px;
+  border-top: 1px dashed #fca5a5; /* Subtle top divider to visually separate it */
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Link inside the banner */
+.job-banner a {
+  color: #dc2626; 
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.job-banner a:hover {
+  color: #991b1b;
+}
+
+/* Dark Mode Overrides */
+body.dark .job-banner {
+  color: #ef4444; /* Brighter red so it pops on dark backgrounds */
+  border-top: 1px dashed #7f1d1d;
+}
+
+body.dark .job-banner a {
+  color: #f87171;
+}
+
+body.dark .job-banner a:hover {
+  color: #fca5a5;
+}
